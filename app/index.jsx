@@ -5,6 +5,6 @@ require('./index.scss');
 
 var routes = require('./routes');
 
-Router.run(routes, Router.HistoryLocation, (Handler, state) => {
+Router.run(routes, (Handler) => {
   React.render(<Handler/>, document.body);
 });

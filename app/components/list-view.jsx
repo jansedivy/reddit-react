@@ -1,15 +1,22 @@
 var React = require('react');
+var Router = require('react-router');
+
 var Reddit = require('../reddit');
 var RecordItem = require('./record-item');
 
 var ListView = React.createClass({
+  mixins: [ Router.State ],
+
   getInitialState() {
-    return { items: [] };
+    return {
+      name: this.getParams().name,
+      items: []
+    };
   },
 
   componentDidMount() {
     var self = this;
-    Reddit.get('programming').then(function(data) {
+    Reddit.get(this.state.name).then(function(data) {
       self.setState({ items: data });
     });
   },
