@@ -5,7 +5,7 @@ var RecordItem = React.createClass({
   render() {
     return (
       <div>
-        <a href={this.props.data.url}>{this.props.data.title}</a> - <Link to="comments" params={{ name: this.props.data.subreddit, id: this.props.data.id }}>{this.props.data.commentCounts} Comments</Link>
+      {this.props.data.score} - <a href={this.props.data.url}>{this.props.data.title}</a> - <Link to="comments" params={{ name: this.props.data.subreddit, id: this.props.data.id }}>{this.props.data.commentCounts} Comments</Link>
       </div>
     );
   }
