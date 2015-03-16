@@ -9,7 +9,7 @@ var App = React.createClass({
           <div className="inside">
             <h1>Reddit app</h1>
             <ul>
-              <li><Router.Link to="/">Home</Router.Link></li>
+              <li><Router.Link to="/">Favorites</Router.Link></li>
             </ul>
           </div>
         </header>
