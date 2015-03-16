@@ -23,10 +23,10 @@ var ListView = React.createClass({
 
   render() {
     var items = this.state.items.map(function(item) {
-      return React.createElement(RecordItem, { data: item, key: item.id });
+      return <RecordItem data={item} key={item.id}/>;
     });
 
-    return React.createElement('div', null, items);
+    return <div>{items}</div>;
   }
 });
 
