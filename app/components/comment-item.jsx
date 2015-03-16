@@ -1,4 +1,5 @@
 var React = require('react');
+var Markdown = require('./markdown');
 
 var CommentItem = React.createClass({
   render() {
@@ -9,7 +10,7 @@ var CommentItem = React.createClass({
     return (
       <div className="comment">
         <h4>{this.props.data.author}</h4>
-        <p>{this.props.data.text}</p>
+        <Markdown data={this.props.data.text}/>
         <div className="nested-comments">{nestedComments}</div>
       </div>
     );
