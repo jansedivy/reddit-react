@@ -8,6 +8,7 @@ var Reddit = {
         return {
           id: record.id,
           subreddit: subreddit,
+          url: record.url,
           author: record.author,
           commentCounts: record.num_comments,
           score: record.score,
