@@ -7,6 +7,7 @@ var Reddit = {
         var record = item.data;
         return {
           id: record.id,
+          subreddit: subreddit,
           author: record.author,
           commentCounts: record.num_comments,
           score: record.score,
