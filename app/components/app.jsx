@@ -5,12 +5,18 @@ var App = React.createClass({
   render() {
     return (
       <div className="App">
-        <h1>Reddit app</h1>
-        <ul>
-          <li><Router.Link to="/">Home</Router.Link></li>
-        </ul>
+        <header>
+          <div className="inside">
+            <h1>Reddit app</h1>
+            <ul>
+              <li><Router.Link to="/">Home</Router.Link></li>
+            </ul>
+          </div>
+        </header>
         <div className="content">
-          <Router.RouteHandler {...this.props}/>
+          <div className="inside">
+            <Router.RouteHandler {...this.props}/>
+          </div>
         </div>
       </div>
     );
