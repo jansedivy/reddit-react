@@ -56,7 +56,7 @@ var FavoritesView = React.createClass({
   render() {
     var items = this.state.subreddits.map(function(item) {
       return (
-        <li key={item.id}>
+        <li key={item.name}>
           <Link to="subreddit" params={item}>{item.name}</Link>
         </li>
       );
