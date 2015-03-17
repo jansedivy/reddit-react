@@ -54,7 +54,8 @@ var Reddit = {
       author: record.author,
       commentCounts: record.num_comments,
       score: record.score,
-      title: record.title
+      title: record.title,
+      created: record.created_utc
     };
   }
 };
