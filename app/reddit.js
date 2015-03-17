@@ -7,6 +7,12 @@ var Reddit = {
     });
   },
 
+  search: function(value) {
+    return Fetch.getJSON('http://www.reddit.com/search.json?q=' + value).then(function(data) {
+      return data.data.children.map(Reddit._formatTopic);
+    });
+  },
+
   _mapComments: function(data) {
     return data.map(function(item) {
       var record = item.data;
