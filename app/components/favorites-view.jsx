@@ -5,8 +5,45 @@ var Favorites = require('../favorites');
 var FavoritesView = React.createClass({
   getInitialState() {
     return {
-      subreddits: Favorites.all()
+      subreddits: Favorites.all(),
+      showAddForm: false
     };
+  },
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    var input = this.refs.newSubreddit.getDOMNode().value.trim();
+
+    Favorites.add(input);
+
+    this.setState({
+      subreddits: Favorites.all(),
+      showAddForm: false
+    });
+
+    this.refs.newSubreddit.getDOMNode().value = '';
+  },
+
+  showAdd(e) {
+    e.preventDefault();
+
+    this.setState({
+      showAddForm: true
+    });
+  },
+
+  getAddPartial() {
+    if (this.state.showAddForm) {
+      return (
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" ref="newSubreddit"/>
+          <input type="submit"/>
+        </form>
+      );
+    } else {
+      return <a href="#" onClick={this.showAdd}>Add</a>;
+    }
   },
 
   render() {
@@ -18,7 +55,13 @@ var FavoritesView = React.createClass({
       );
     });
 
-    return <ul>{items}</ul>;
+    return (
+      <div>
+        <ul>{items}</ul>
+
+        {this.getAddPartial()}
+      </div>
+    );
   }
 });
 
