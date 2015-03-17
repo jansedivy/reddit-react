@@ -11,7 +11,26 @@ body {
 .score {
   width: 40px;
   text-align: center;
-  display: inline-block;
+  display: block;
+  float: left;
+}
+
+.record-item {
+  overflow: hidden;
+  padding: 10px 0;
+  border-bottom: 1px solid #d3d3d3;
+
+  .meta {
+    margin-top: 10px;
+
+    a {
+      color: #5c5c5c;
+    }
+  }
+}
+
+.info {
+  float: left;
 }
 
 .nested-comments {
