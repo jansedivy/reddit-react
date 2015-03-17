@@ -24,6 +24,7 @@ var Reddit = {
       return {
         author: record.author,
         text: record.body,
+        score: record.score,
         comments: record.replies ? Reddit._mapComments(record.replies.data.children) : []
       };
     });
