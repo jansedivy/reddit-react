@@ -1,14 +1,11 @@
 var React = require('react');
 var Link = require('react-router').Link;
+var Favorites = require('../favorites');
 
 var FavoritesView = React.createClass({
   getInitialState() {
     return {
-      subreddits: [
-        { name: 'programming' },
-        { name: 'gamedev' },
-        { name: 'rust' }
-      ]
+      subreddits: Favorites.all()
     };
   },
 
