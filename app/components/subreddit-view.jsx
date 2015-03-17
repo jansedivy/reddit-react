@@ -11,12 +11,13 @@ var SubredditView = React.createClass({
   getInitialState() {
     return {
       name: this.getParams().name,
+      lastId: null,
       items: []
     };
   },
 
   componentDidMount() {
-    Reddit.subreddit(this.state.name).then(data => this.setState({ items: data }));
+    Reddit.subreddit(this.state.name).then(data => this.setState({ items: data.items, lastId: data.lastId }));
   },
 
   render() {

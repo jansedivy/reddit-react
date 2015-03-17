@@ -3,7 +3,10 @@ var Fetch = require('./fetch');
 var Reddit = {
   subreddit(subreddit) {
     return Fetch.getJSON('http://www.reddit.com/r/' + subreddit + '.json').then(function(data) {
-      return data.data.children.map(Reddit._formatTopic);
+      return {
+        lastId: data.data.after,
+        items: data.data.children.map(Reddit._formatTopic)
+      };
     });
   },
 
