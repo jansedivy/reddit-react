@@ -10,6 +10,7 @@ var App = React.createClass({
             <h1>Reddit app</h1>
             <ul>
               <li><Router.Link to="/">Favorites</Router.Link></li>
+              <li><Router.Link to="/search">Search</Router.Link></li>
             </ul>
           </div>
         </header>
