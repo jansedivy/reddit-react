@@ -16,12 +16,28 @@ var SubredditView = React.createClass({
     };
   },
 
+  loadMore(e) {
+    e.preventDefault();
+
+    Reddit.subreddit(this.state.name, { lastId: this.state.lastId }).then(data => {
+      this.setState({
+        items: this.state.items.concat(data.items),
+        lastId: data.lastId
+      });
+    });
+  },
+
   componentDidMount() {
     Reddit.subreddit(this.state.name).then(data => this.setState({ items: data.items, lastId: data.lastId }));
   },
 
   render() {
-    return <ListView items={this.state.items}/>;
+    return (
+      <div>
+        <ListView items={this.state.items}/>
+        <a href="#" onClick={this.loadMore}>Load more</a>
+      </div>
+    );
   }
 });
 

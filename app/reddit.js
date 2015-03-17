@@ -1,8 +1,14 @@
 var Fetch = require('./fetch');
+var extend = require('extend');
 
 var Reddit = {
-  subreddit(subreddit) {
-    return Fetch.getJSON('http://www.reddit.com/r/' + subreddit + '.json').then(function(data) {
+  subreddit(subreddit, options) {
+    options = extend(true, {
+      lastId: ''
+    }, options);
+
+    return Fetch.getJSON('http://www.reddit.com/r/' + subreddit + '.json?after=' + options.lastId).then(function(data) {
+      console.log(data.data);
       return {
         lastId: data.data.after,
         items: data.data.children.map(Reddit._formatTopic)
