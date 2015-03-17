@@ -2,7 +2,8 @@ var React = require('react');
 
 var Remarkable = require('remarkable');
 var md = new Remarkable({
-  html: false
+  html: false,
+  linkify: true
 });
 
 var Markdown = React.createClass({
