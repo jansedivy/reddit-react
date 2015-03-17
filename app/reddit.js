@@ -15,6 +15,11 @@ var Reddit = {
 
   _mapComments: function(data) {
     return data.map(function(item) {
+      if (item.kind === 'more') {
+        // TOOD(sedivy): add loading more comments
+        return null;
+      }
+
       var record = item.data;
       return {
         author: record.author,
@@ -22,7 +27,7 @@ var Reddit = {
         score: record.score,
         comments: record.replies ? Reddit._mapComments(record.replies.data.children) : []
       };
-    });
+    }).filter(item => item);
   },
 
   getComments: function(subreddit, id) {
