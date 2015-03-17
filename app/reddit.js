@@ -8,7 +8,6 @@ var Reddit = {
     }, options);
 
     return Fetch.getJSON('http://www.reddit.com/r/' + subreddit + '.json?after=' + options.lastId).then(function(data) {
-      console.log(data.data);
       return {
         lastId: data.data.after,
         items: data.data.children.map(Reddit._formatTopic)
