@@ -1,5 +1,5 @@
 var Fetch = {
-  get: function(url) {
+  get(url) {
     return new Promise(function(resolve) {
       var request = new XMLHttpRequest();
       request.open('GET', url);
@@ -10,7 +10,7 @@ var Fetch = {
     });
   },
 
-  getJSON: function(url) {
+  getJSON(url) {
     if (Fetch._cache[url]) {
       return new Promise(function(resolve) {
         resolve(Fetch._cache[url]);
