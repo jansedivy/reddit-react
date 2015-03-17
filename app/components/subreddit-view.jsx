@@ -17,7 +17,7 @@ var SubredditView = React.createClass({
 
   componentDidMount() {
     var self = this;
-    Reddit.get(this.state.name).then(function(data) {
+    Reddit.subreddit(this.state.name).then(function(data) {
       self.setState({
         items: data
       });
