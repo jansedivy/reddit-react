@@ -18,12 +18,7 @@ var CommentsView = React.createClass({
   },
 
   componentDidMount() {
-    var self = this;
-    Reddit.getComments(this.state.subreddit, this.state.id).then(function(data) {
-      self.setState({
-        comments: data
-      });
-    });
+    Reddit.getComments(this.state.subreddit, this.state.id).then(data => this.setState({ comments: data }));
   },
 
   render() {
