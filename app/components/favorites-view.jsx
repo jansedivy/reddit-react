@@ -18,11 +18,10 @@ var FavoritesView = React.createClass({
     Favorites.add(input);
 
     this.setState({
-      subreddits: Favorites.all(),
-      showAddForm: false
+      subreddits: Favorites.all()
     });
 
-    this.refs.newSubreddit.getDOMNode().value = '';
+    this.closeForm();
   },
 
   showAdd(e) {
@@ -33,11 +32,19 @@ var FavoritesView = React.createClass({
     });
   },
 
+  closeForm() {
+    this.setState({
+      showAddForm: false
+    });
+
+    this.refs.newSubreddit.getDOMNode().value = '';
+  },
+
   getAddPartial() {
     if (this.state.showAddForm) {
       return (
         <form onSubmit={this.handleSubmit}>
-          <input type="text" ref="newSubreddit"/>
+          <input autoFocus type="text" ref="newSubreddit" onBlur={this.closeForm}/>
           <input type="submit"/>
         </form>
       );
