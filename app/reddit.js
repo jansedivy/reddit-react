@@ -22,6 +22,7 @@ var Reddit = {
 
       var record = item.data;
       return {
+        id: record.id,
         author: record.author,
         text: record.body,
         score: record.score,

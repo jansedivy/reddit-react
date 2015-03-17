@@ -28,7 +28,7 @@ var CommentsView = React.createClass({
 
   render() {
     var items = this.state.comments.map(function(item) {
-      return <CommentItem data={item}/>;
+      return <CommentItem data={item} key={item.id}/>;
     });
     return <div>{items}</div>;
   }

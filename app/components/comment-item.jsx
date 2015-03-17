@@ -4,7 +4,7 @@ var Markdown = require('./markdown');
 var CommentItem = React.createClass({
   render() {
     var nestedComments = this.props.data.comments.map(function(item) {
-      return <CommentItem data={item}/>;
+      return <CommentItem data={item} key={item.id}/>;
     });
 
     return (
