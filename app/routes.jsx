@@ -15,7 +15,7 @@ var routes = (
     <DefaultRoute handler={FavoritesView}/>
     <Route name="search" path="search" handler={SearchView}/>
     <Route name="subreddit" path="r/:name" handler={SubredditView}/>
-    <Route name="comments" path="r/:name/:id/comments" handler={CommentsView}/>
+    <Route name="comments" path="r/:name/comments/:id" handler={CommentsView}/>
   </Route>
 );
 
