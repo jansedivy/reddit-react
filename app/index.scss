@@ -61,6 +61,12 @@ body {
   padding: 0 10px;
 }
 
+.comment-text {
+  border: 1px solid #e7e7e7;
+  border-left: 4px solid #FF5D09;
+  padding-left: 10px;
+}
+
 .nested-comments {
-  margin-left: 20px;
+  margin: 20px 0 20px 20px;
 }

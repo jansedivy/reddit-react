@@ -9,8 +9,10 @@ var CommentItem = React.createClass({
 
     return (
       <div className="comment">
-        <h4>{this.props.data.score} - {this.props.data.author}</h4>
-        <Markdown data={this.props.data.text}/>
+        <div className="comment-text">
+          <h4>{this.props.data.score} - {this.props.data.author}</h4>
+          <Markdown data={this.props.data.text}/>
+        </div>
         <div className="nested-comments">{nestedComments}</div>
       </div>
     );
