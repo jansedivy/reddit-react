@@ -12,9 +12,7 @@ var Fetch = {
 
   getJSON(url) {
     if (Fetch._cache[url]) {
-      return new Promise(function(resolve) {
-        resolve(Fetch._cache[url]);
-      });
+      return Promise.resolve(Fetch._cache[url]);
     }
 
     return Fetch.get(url).then(function(data) {
