@@ -13,10 +13,18 @@ var RecordItem = React.createClass({
     }
   },
 
+  getThumbnail() {
+    var path = this.props.data.image;
+    if (path && path !== 'self' && path !== 'default') {
+      return <img src={this.props.data.image} width="50px" className="thumbnail"/>;
+    }
+  },
+
   render() {
     return (
       <div className="record-item">
         <span className="score">{this.props.data.score}</span>
+        {this.getThumbnail()}
         <div className="info">
           {this.getTitleLink()} <span className="domain">({this.props.data.domain})</span>
           <ul className="meta">

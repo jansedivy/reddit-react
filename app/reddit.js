@@ -52,6 +52,7 @@ var Reddit = {
     var record = item.data;
     return {
       id: record.id,
+      image: record.thumbnail,
       domain: record.domain,
       text: record.selftext,
       subreddit: record.subreddit,
