@@ -1,5 +1,6 @@
 var React = require('react');
 var Markdown = require('./markdown');
+var DateFormat = require('./date-format');
 
 var DetailView = React.createClass({
   getThumbnail() {
@@ -22,7 +23,8 @@ var DetailView = React.createClass({
   render() {
     return (
       <div className="detail-view">
-        <h2 className="detail-title">{this.getThumbnail()} {this.getTitleLink()}</h2>
+        <h2 className="detail-title">{this.getThumbnail()} <span className="score">{this.props.data.score}</span> - {this.getTitleLink()}</h2>
+        <div className="info">{this.props.data.author} - <DateFormat data={this.props.data.created}/></div>
         <Markdown data={this.props.data.text}/>
       </div>
     );

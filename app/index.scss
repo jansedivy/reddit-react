@@ -14,17 +14,17 @@ body {
   width: 940px;
 }
 
-.score {
-  width: 60px;
-  text-align: center;
-  display: block;
-  float: left;
-}
-
 .record-item {
   overflow: hidden;
   padding: 10px 0;
   border-bottom: 1px solid #d3d3d3;
+
+  .score {
+    width: 60px;
+    text-align: center;
+    display: block;
+    float: left;
+  }
 
   .domain {
     color: #646464;
@@ -34,6 +34,12 @@ body {
   .thumbnail {
     float: left;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .info {
+    float: left;
+    width: 830px;
+    padding: 0 10px;
   }
 
   .meta {
@@ -53,12 +59,6 @@ body {
       color: #5c5c5c;
     }
   }
-}
-
-.info {
-  float: left;
-  width: 830px;
-  padding: 0 10px;
 }
 
 .comment {
@@ -106,5 +106,9 @@ body {
 
   .detail-title {
     margin: 0;
+  }
+
+  .score {
+    font-weight: normal;
   }
 }
