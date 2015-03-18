@@ -41,7 +41,7 @@ var CommentItem = React.createClass({
         <div className="comment-text">
           <h4>{this.props.data.score} - {this.props.data.author} <span className="comment-date"><DateFormat date={this.props.data.created}/></span></h4>
           <Markdown data={this.props.data.text}/>
-          <a href="#" className={classes} onClick={this.toggleNestedComments}></a>
+          {this.props.data.comments.length ? <a href="#" className={classes} onClick={this.toggleNestedComments}></a> : ''}
         </div>
         {this.getNestedComments()}
       </div>
