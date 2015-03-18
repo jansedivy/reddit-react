@@ -21,7 +21,7 @@ var DetailView = React.createClass({
 
   render() {
     return (
-      <div>
+      <div className="detail-view">
         <h2>{this.getThumbnail()} {this.getTitleLink()}</h2>
         <Markdown data={this.props.data.text}/>
       </div>
