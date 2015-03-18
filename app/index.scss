@@ -83,6 +83,10 @@ body {
     right: 0;
     bottom: 0;
     width: 20px;
+
+    &.hidden-comments {
+      background: #8a99ff;
+    }
   }
 
   .comment-date {

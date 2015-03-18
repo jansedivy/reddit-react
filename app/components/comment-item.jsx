@@ -30,12 +30,18 @@ var CommentItem = React.createClass({
   },
 
   render() {
+    var cx = React.addons.classSet;
+    var classes = cx({
+      'toggle-comment-visiblity': true,
+      'hidden-comments': !this.state.showNested
+    });
+
     return (
       <div className="comment">
         <div className="comment-text">
           <h4>{this.props.data.score} - {this.props.data.author} <span className="comment-date"><DateFormat date={this.props.data.created}/></span></h4>
           <Markdown data={this.props.data.text}/>
-          <a href="#" className="toggle-comment-visiblity" onClick={this.toggleNestedComments}></a>
+          <a href="#" className={classes} onClick={this.toggleNestedComments}></a>
         </div>
         {this.getNestedComments()}
       </div>
