@@ -64,24 +64,32 @@ body {
 .comment {
   background: rgba(0, 0, 0, 0.06);
   border-left: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 20px 0 20px 20px;
 }
 
 .comment-text {
   background: #FFF;
   border-left: 4px solid #ff5d09;
-  padding: 0 10px;
+  padding: 0 30px 0 10px;
   overflow: hidden;
   border-right: 1px solid #e4e4e4;
+  position: relative;
+
+  .toggle-comment-visiblity {
+    background: rgba(106, 148, 178, 0.34);
+    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 20px;
+  }
 
   .comment-date {
     color: #9e9e9e;
     font-size: 13px;
     font-weight: normal;
   }
-}
-
-.nested-comments {
-  margin: 20px 0 20px 20px;
 }
 
 .detail-view {
