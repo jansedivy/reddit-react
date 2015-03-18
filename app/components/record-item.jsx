@@ -3,21 +3,22 @@ var Link = require('react-router').Link;
 var DateFormat = require('./date-format');
 
 var RecordItem = React.createClass({
-  render() {
+  getTitleLink() {
     var title = this.props.data.title;
 
-    var link = null;
     if (this.props.data.external) {
-      link = <a href={this.props.data.url}>{title}</a>;
+      return <a href={this.props.data.url}>{title}</a>;
     } else {
-      link = <Link to="comments" params={{ name: this.props.data.subreddit, id: this.props.data.id }}>{title}</Link>;
+      return <Link to="comments" params={{ name: this.props.data.subreddit, id: this.props.data.id }}>{title}</Link>;
     }
+  },
 
+  render() {
     return (
       <div className="record-item">
         <span className="score">{this.props.data.score}</span>
         <div className="info">
-          {link} <span className="domain">({this.props.data.domain})</span>
+          {this.getTitleLink()} <span className="domain">({this.props.data.domain})</span>
           <ul className="meta">
             <li>
               <Link to="comments" params={{ name: this.props.data.subreddit, id: this.props.data.id }}>{this.props.data.commentCounts} Comments</Link>
