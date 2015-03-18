@@ -1,8 +1,15 @@
 var React = require('react');
+var Markdown = require('./markdown');
 
 var DetailView = React.createClass({
   render() {
-    return <h1>--Detail goes here--</h1>;
+    console.log(this.props.data);
+    return (
+      <div>
+        <h2>{this.props.data.title}</h2>
+        <Markdown data={this.props.data.text}/>
+      </div>
+    );
   }
 });
 

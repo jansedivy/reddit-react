@@ -41,7 +41,10 @@ var Reddit = {
 
   getComments(subreddit, id) {
     return Fetch.getJSON('http://www.reddit.com/r/' + subreddit + '/comments/' + id + '.json').then(function(data) {
-      return Reddit._mapComments(data[1].data.children);
+      return {
+        detail: Reddit._formatTopic(data[0].data.children[0]),
+        comments: Reddit._mapComments(data[1].data.children)
+      };
     });
   },
 
@@ -50,6 +53,7 @@ var Reddit = {
     return {
       id: record.id,
       domain: record.domain,
+      text: record.selftext,
       subreddit: record.subreddit,
       url: record.url,
       author: record.author,
