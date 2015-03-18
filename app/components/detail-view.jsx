@@ -3,7 +3,6 @@ var Markdown = require('./markdown');
 
 var DetailView = React.createClass({
   render() {
-    console.log(this.props.data);
     return (
       <div>
         <h2>{this.props.data.title}</h2>
