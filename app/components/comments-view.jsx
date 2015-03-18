@@ -3,6 +3,7 @@ var Router = require('react-router');
 
 var Reddit = require('../reddit');
 var CommentItem = require('./comment-item');
+var DetailView = require('./detail-view');
 
 var CommentsView = React.createClass({
   mixins: [ Router.State ],
@@ -25,7 +26,13 @@ var CommentsView = React.createClass({
     var items = this.state.comments.map(function(item) {
       return <CommentItem data={item} key={item.id}/>;
     });
-    return <div>{items}</div>;
+
+    return (
+      <div>
+        <DetailView/>
+        {items}
+      </div>
+    );
   }
 });
 
