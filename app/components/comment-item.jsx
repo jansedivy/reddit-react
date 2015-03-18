@@ -1,5 +1,6 @@
 var React = require('react');
 var Markdown = require('./markdown');
+var DateFormat = require('./date-format');
 
 var CommentItem = React.createClass({
   render() {
@@ -10,7 +11,7 @@ var CommentItem = React.createClass({
     return (
       <div className="comment">
         <div className="comment-text">
-          <h4>{this.props.data.score} - {this.props.data.author}</h4>
+          <h4>{this.props.data.score} - {this.props.data.author} <span className="comment-date"><DateFormat date={this.props.data.created}/></span></h4>
           <Markdown data={this.props.data.text}/>
         </div>
         <div className="nested-comments">{nestedComments}</div>

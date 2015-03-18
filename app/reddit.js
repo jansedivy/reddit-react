@@ -34,6 +34,7 @@ var Reddit = {
         author: record.author,
         text: record.body,
         score: record.score,
+        created: record.created_utc,
         comments: record.replies ? Reddit._mapComments(record.replies.data.children) : []
       };
     }).filter(item => item);
