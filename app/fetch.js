@@ -1,9 +1,14 @@
 var Fetch = {
   get(url) {
+    if (Fetch._cache[url]) {
+      return Promise.resolve(Fetch._cache[url]);
+    }
+
     return new Promise(function(resolve) {
       var request = new XMLHttpRequest();
       request.open('GET', url);
       request.onload = function() {
+        Fetch._cache[url] = request.responseText;
         resolve(request.responseText);
       };
       request.send();
@@ -11,17 +16,7 @@ var Fetch = {
   },
 
   getJSON(url) {
-    if (Fetch._cache[url]) {
-      return Promise.resolve(Fetch._cache[url]);
-    }
-
-    return Fetch.get(url).then(function(data) {
-      var result = JSON.parse(data);
-
-      Fetch._cache[url] = result;
-
-      return result;
-    });
+    return Fetch.get(url).then(JSON.parse);
   },
 
   _cache: {}
