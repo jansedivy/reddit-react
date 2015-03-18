@@ -61,7 +61,13 @@ body {
   padding: 0 10px;
 }
 
+.comment {
+  background: rgba(0, 0, 0, 0.06);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .comment-text {
+  background: white;
   border: 1px solid #e7e7e7;
   border-left: 4px solid #FF5D09;
   padding-left: 10px;
