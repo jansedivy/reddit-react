@@ -49,6 +49,7 @@ var Reddit = {
     var record = item.data;
     return {
       id: record.id,
+      domain: record.domain,
       subreddit: record.subreddit,
       url: record.url,
       author: record.author,

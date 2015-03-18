@@ -17,7 +17,7 @@ var RecordItem = React.createClass({
       <div className="record-item">
         <span className="score">{this.props.data.score}</span>
         <div className="info">
-          {link}
+          {link} <span className="domain">({this.props.data.domain})</span>
           <ul className="meta">
             <li>
               <Link to="comments" params={{ name: this.props.data.subreddit, id: this.props.data.id }}>{this.props.data.commentCounts} Comments</Link>
