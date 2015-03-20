@@ -38,6 +38,7 @@ var SubredditView = React.createClass({
   render() {
     return (
       <div>
+        <h2>{this.state.name}</h2>
         <ListView items={this.state.items}/>
         {!this.state.isLoading ? <a href="#" onClick={this.loadMore}>Load more</a> : <span>Loading</span>}
       </div>
