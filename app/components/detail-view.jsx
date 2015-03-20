@@ -24,7 +24,7 @@ var DetailView = React.createClass({
     return (
       <div className="detail-view">
         <h2 className="detail-title">{this.getThumbnail()} <span className="score">{this.props.data.score}</span> - {this.getTitleLink()}</h2>
-        <div className="info">{this.props.data.author} - <DateFormat data={this.props.data.created}/></div>
+        <div className="info">{this.props.data.author} - <DateFormat date={this.props.data.created}/></div>
         <Markdown data={this.props.data.text}/>
       </div>
     );
