@@ -5,13 +5,13 @@
 }
 
 body {
-  margin: 0;
+  margin: 10px;
   font-family: sans-serif;
 }
 
 .inside {
   margin: 0 auto;
-  width: 940px;
+  max-width: 940px;
 }
 
 .record-item {
@@ -19,11 +19,14 @@ body {
   padding: 10px 0;
   border-bottom: 1px solid #d3d3d3;
 
-  .score {
-    width: 60px;
-    text-align: center;
+  .record-title-link {
     display: block;
-    float: left;
+    padding: 10px 0;
+  }
+
+  .score {
+    width: 100%;
+    display: block;
   }
 
   .domain {
@@ -34,12 +37,6 @@ body {
   .thumbnail {
     float: left;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  }
-
-  .info {
-    float: left;
-    width: 830px;
-    padding: 0 10px;
   }
 
   .meta {
@@ -68,7 +65,7 @@ body {
   margin: 20px 0;
 
   .comment {
-    margin-left: 20px;
+    margin-left: 3%;
   }
 }
 

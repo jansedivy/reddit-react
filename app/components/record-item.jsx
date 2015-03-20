@@ -7,9 +7,9 @@ var RecordItem = React.createClass({
     var title = this.props.data.title;
 
     if (this.props.data.external) {
-      return <a href={this.props.data.url}>{title}</a>;
+      return <a className="record-title-link" href={this.props.data.url}>{title}</a>;
     } else {
-      return <Link to="comments" params={{ name: this.props.data.subreddit, id: this.props.data.id }}>{title}</Link>;
+      return <Link className="record-title-link" to="comments" params={{ name: this.props.data.subreddit, id: this.props.data.id }}>{title}</Link>;
     }
   },
 
