@@ -16,7 +16,7 @@ var RecordItem = React.createClass({
   getThumbnail() {
     var path = this.props.data.image;
     if (path && path !== 'self' && path !== 'default') {
-      return <img src={this.props.data.image} width="50px" className="thumbnail"/>;
+      return <img src={this.props.data.image} className="thumbnail"/>;
     }
   },
 
