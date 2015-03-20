@@ -14,32 +14,45 @@ var App = React.createClass({
   },
 
   render() {
-    var containerClass = 'main-container';
+    var sidebarClass = 'sidebar';
     if (this.state.showSidebar) {
-      containerClass += ' show-sidebar';
+      sidebarClass += ' show-sidebar';
+    }
+
+    var headerClass = 'main-header';
+    if (this.state.showSidebar) {
+      headerClass += ' slide-out';
+    }
+
+    var contentClass = 'content';
+    if (this.state.showSidebar) {
+      contentClass += ' slide-out';
     }
 
     return (
-      <div className={containerClass}>
+      <div className="main-container">
         <div className="app">
-          <header className="main-header">
+          <header className={headerClass}>
             <a href="#" onClick={this.handleClick}>Toggle sidebar</a>
             <h1>Reddit app</h1>
           </header>
-          <div className="content">
+
+          <div className={contentClass}>
             <div className="inside">
               <Router.RouteHandler {...this.props}/>
             </div>
           </div>
         </div>
 
-        <div className="sidebar">
-          <h1>Sidebar</h1>
+        <div className={sidebarClass}>
+          <div className="sidebar-inside">
+            <h1>Sidebar</h1>
 
-          <ul>
-            <li><Router.Link to="/">Favorites</Router.Link></li>
-            <li><Router.Link to="/search">Search</Router.Link></li>
-          </ul>
+            <ul>
+              <li><Router.Link to="/">Favorites</Router.Link></li>
+              <li><Router.Link to="/search">Search</Router.Link></li>
+            </ul>
+          </div>
         </div>
       </div>
     );
