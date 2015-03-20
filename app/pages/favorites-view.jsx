@@ -43,9 +43,8 @@ var FavoritesView = React.createClass({
   getAddPartial() {
     if (this.state.showAddForm) {
       return (
-        <form onSubmit={this.handleSubmit}>
-          <input autoFocus type="text" ref="newSubreddit" onBlur={this.closeForm}/>
-          <input type="submit"/>
+        <form onBlur={this.closeForm} onSubmit={this.handleSubmit}>
+          <input autoFocus type="text" ref="newSubreddit"/>
         </form>
       );
     } else {
