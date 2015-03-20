@@ -33,8 +33,8 @@ var App = React.createClass({
       <div className="main-container">
         <div className="app">
           <header className={headerClass}>
-            <a href="#" onClick={this.handleClick}>Toggle sidebar</a>
-            <h1>Reddit app</h1>
+            <a href="#" className="toggle-sidebar" onClick={this.handleClick}>Toggle sidebar</a>
+            <h1 className="header-title">Reddit app</h1>
           </header>
 
           <div className={contentClass}>
