@@ -22,15 +22,9 @@ var App = React.createClass({
     return (
       <div className={containerClass}>
         <div className="app">
-          <header>
-            <div className="inside">
-              <h1>Reddit app</h1>
-              <ul>
-                <li><a href="#" onClick={this.handleClick}>Toggle sidebar</a></li>
-                <li><Router.Link to="/">Favorites</Router.Link></li>
-                <li><Router.Link to="/search">Search</Router.Link></li>
-              </ul>
-            </div>
+          <header className="main-header">
+            <a href="#" onClick={this.handleClick}>Toggle sidebar</a>
+            <h1>Reddit app</h1>
           </header>
           <div className="content">
             <div className="inside">
@@ -41,6 +35,11 @@ var App = React.createClass({
 
         <div className="sidebar">
           <h1>Sidebar</h1>
+
+          <ul>
+            <li><Router.Link to="/">Favorites</Router.Link></li>
+            <li><Router.Link to="/search">Search</Router.Link></li>
+          </ul>
         </div>
       </div>
     );
