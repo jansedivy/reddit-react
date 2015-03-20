@@ -7,9 +7,9 @@ var RecordItem = React.createClass({
     var title = this.props.data.title;
 
     if (this.props.data.external) {
-      return <a className="record-title-link" href={this.props.data.url}>{title}</a>;
+      return <a className="record-title-link" href={this.props.data.url}>{this.getThumbnail()} {title}</a>;
     } else {
-      return <Link className="record-title-link" to="comments" params={{ name: this.props.data.subreddit, id: this.props.data.id }}>{title}</Link>;
+      return <Link className="record-title-link" to="comments" params={{ name: this.props.data.subreddit, id: this.props.data.id }}>{this.getThumbnail()} {title}</Link>;
     }
   },
 
@@ -24,7 +24,6 @@ var RecordItem = React.createClass({
     return (
       <div className="record-item">
         <span className="score">{this.props.data.score}</span>
-        {this.getThumbnail()}
         <div className="info">
           {this.getTitleLink()} <span className="domain">({this.props.data.domain})</span>
           <ul className="meta">
