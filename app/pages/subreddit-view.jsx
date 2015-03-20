@@ -12,30 +12,34 @@ var SubredditView = React.createClass({
     return {
       name: this.getParams().name,
       lastId: null,
-      items: []
+      items: [],
+      isLoading: true
     };
   },
 
   loadMore(e) {
     e.preventDefault();
 
+    this.setState({ isLoading: true });
+
     Reddit.subreddit(this.state.name, { lastId: this.state.lastId }).then(data => {
       this.setState({
         items: this.state.items.concat(data.items),
-        lastId: data.lastId
+        lastId: data.lastId,
+        isLoading: false
       });
     });
   },
 
   componentDidMount() {
-    Reddit.subreddit(this.state.name).then(data => this.setState({ items: data.items, lastId: data.lastId }));
+    Reddit.subreddit(this.state.name).then(data => this.setState({ items: data.items, lastId: data.lastId, isLoading: false }));
   },
 
   render() {
     return (
       <div>
         <ListView items={this.state.items}/>
-        <a href="#" onClick={this.loadMore}>Load more</a>
+        {!this.state.isLoading ? <a href="#" onClick={this.loadMore}>Load more</a> : <span>Loading</span>}
       </div>
     );
   }
