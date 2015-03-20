@@ -2,8 +2,8 @@ var React = require('react');
 var Router = require('react-router');
 
 var Reddit = require('../reddit');
-var CommentItem = require('./comment-item');
-var DetailView = require('./detail-view');
+var CommentItem = require('../components/comment-item');
+var DetailView = require('../components/detail-view');
 
 var CommentsView = React.createClass({
   mixins: [ Router.State ],

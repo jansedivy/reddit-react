@@ -1,5 +1,5 @@
 var React = require('react');
-var ListView = require('./list-view');
+var ListView = require('../components/list-view');
 var Reddit = require('../reddit');
 
 var SearchView = React.createClass({

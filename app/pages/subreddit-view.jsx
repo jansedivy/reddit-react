@@ -3,7 +3,7 @@ var Router = require('react-router');
 
 var Reddit = require('../reddit');
 
-var ListView = require('./list-view');
+var ListView = require('../components/list-view');
 
 var SubredditView = React.createClass({
   mixins: [ Router.State ],

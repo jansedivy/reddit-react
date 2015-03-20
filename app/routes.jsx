@@ -5,12 +5,12 @@ var Route = Router.Route;
 var DefaultRoute = Router.DefaultRoute;
 var NotFoundRoute = Router.NotFoundRoute;
 
-var App = require('./components/app');
-var SubredditView = require('./components/subreddit-view');
-var FavoritesView = require('./components/favorites-view');
-var CommentsView = require('./components/comments-view');
-var SearchView = require('./components/search-view');
-var NotFound = require('./components/not-found');
+var App = require('./app');
+var SubredditView = require('./pages/subreddit-view');
+var FavoritesView = require('./pages/favorites-view');
+var CommentsView = require('./pages/comments-view');
+var SearchView = require('./pages/search-view');
+var NotFound = require('./pages/not-found');
 
 var routes = (
   <Route>
