@@ -4,14 +4,46 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
-  margin: 10px;
+  margin: 0;
   font-family: sans-serif;
+  overflow-x: hidden;
 }
 
 .inside {
   margin: 0 auto;
   max-width: 940px;
+}
+
+.main-container {
+  min-height: 100%;
+
+  -webkit-transform: translateX(0);
+  -webkit-transition: all .3s ease-out;
+
+  &.show-sidebar {
+    -webkit-transition: all .3s ease-out;
+    -webkit-transform: translateX(70%);
+  }
+}
+
+.sidebar {
+  width: 70%;
+  background: red;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  -webkit-transform: translateX(-100%);
+}
+
+.app {
+  padding: 10px;
 }
 
 .record-item {
