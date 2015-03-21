@@ -4,10 +4,13 @@ var classnames = require('classnames');
 var Markdown = require('./markdown');
 var DateFormat = require('./date-format');
 
+var Reddit = require('../reddit');
+
 var CommentItem = React.createClass({
   getInitialState() {
     return {
-      showNested: true
+      showNested: true,
+      comments: this.props.data.comments
     };
   },
 
@@ -19,9 +22,22 @@ var CommentItem = React.createClass({
     });
   },
 
+  loadNested(e, data) {
+    e.preventDefault();
+    Reddit.getMoreComments(this.props.topic.name, data).then(result => {
+      this.setState({
+        comments: result
+      });
+    });
+  },
+
   getNestedComments() {
-    var nestedComments = this.props.data.comments.map(function(item) {
-      return <CommentItem data={item} key={item.id}/>;
+    var nestedComments = this.state.comments.map((item) => {
+      if (item.more) {
+        return <a href="#" className="load-more-nested-comments" onClick={(e) => this.loadNested(e, item) } key={item.id}>More</a>;
+      } else {
+        return <CommentItem data={item} key={item.id} topic={this.props.topic}/>;
+      }
     });
 
     if (!this.state.showNested || !nestedComments.length) {
@@ -37,7 +53,7 @@ var CommentItem = React.createClass({
         <div className="comment-text">
           <h4>{this.props.data.score} - {this.props.data.author} <span className="comment-date"><DateFormat date={this.props.data.created}/></span></h4>
           <Markdown data={this.props.data.text}/>
-          {this.props.data.comments.length ?
+          {this.state.comments.length ?
             <a href="#"
                className={classnames('toggle-comment-visiblity', { 'hidden-comments': !this.state.showNested })}
                onClick={this.toggleNestedComments}></a> : ''}

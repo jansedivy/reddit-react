@@ -30,8 +30,12 @@ var CommentsView = React.createClass({
   },
 
   render() {
-    var items = this.state.comments.map(function(item) {
-      return <CommentItem data={item} key={item.id}/>;
+    var items = this.state.comments.map(item => {
+      if (item.more) {
+        return <h1 key={item.id}>More</h1>;
+      } else {
+        return <CommentItem data={item} key={item.id} topic={this.state.detail}/>;
+      }
     });
 
     return (

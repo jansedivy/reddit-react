@@ -21,15 +21,29 @@ var Reddit = {
     });
   },
 
+  getMoreComments(name, item) {
+    var query = `?link_id=${name}&children=${item.children.join(',')}&api_type=json`;
+
+    return Fetch.getJSON('http://www.reddit.com/api/morechildren.json' + query).then(function(data) {
+      return Reddit._mapComments(data.json.data.things);
+    });
+  },
+
   _mapComments(data) {
     return data.map(function(item) {
       if (item.kind === 'more') {
-        // TOOD(sedivy): add loading more comments
-        return null;
+        return {
+          more: true,
+          id: item.data.id,
+          name: item.data.name,
+          parent_id: item.data.parent_id,
+          children: item.data.children
+        };
       }
 
       var record = item.data;
       return {
+        more: false,
         id: record.id,
         author: record.author,
         text: record.body,
@@ -53,6 +67,7 @@ var Reddit = {
     var record = item.data;
     return {
       id: record.id,
+      name: record.name,
       image: record.thumbnail,
       domain: record.domain,
       text: record.selftext,
