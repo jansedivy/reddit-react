@@ -115,6 +115,11 @@ var FavoriteItem = React.createClass({
     });
   },
 
+  remove() {
+    this.props.onRemove(this.props.item.name);
+    this.close();
+  },
+
   render() {
     var style = {
       '-webkit-transform': 'translateX(' + (this.state.open ? '100%' : this.state.translation + 'px') + ')'
@@ -126,7 +131,7 @@ var FavoriteItem = React.createClass({
           <Link to="subreddit" params={this.props.item}>{this.props.item.name}</Link>
         </div>
         <div onClick={this.close} className="list-item-behind">
-          buttons
+          <a href="#" onClick={this.remove}>Remove</a>
         </div>
       </li>
     );

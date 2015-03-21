@@ -53,12 +53,19 @@ var FavoritesView = React.createClass({
     }
   },
 
+  handleRemove(name) {
+    var subreddits = this.state.subreddits.filter(item => item.name !== name);
+    this.setState({
+      subreddits: subreddits
+    });
+  },
+
   render() {
     return (
       <div>
         <ul className="favorite-list">
           {this.state.subreddits.map((item) =>
-                                     <FavoriteItem key={item.name} item={item}/>
+                                     <FavoriteItem key={item.name} item={item} onRemove={this.handleRemove}/>
                                     )}
         </ul>
         {this.getAddPartial()}
