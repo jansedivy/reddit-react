@@ -1,16 +1,17 @@
 var React = require('react');
-var Router = require('react-router');
 
 var Reddit = require('../reddit');
 
 var ListView = require('../components/list-view');
 
 var SubredditView = React.createClass({
-  mixins: [ Router.State ],
+  contextTypes: {
+    router: React.PropTypes.func.isRequired
+  },
 
   getInitialState() {
     return {
-      name: this.getParams().name,
+      name: this.context.router.getCurrentParams().name,
       lastId: null,
       items: [],
       isLoading: true

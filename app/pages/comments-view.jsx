@@ -1,15 +1,16 @@
 var React = require('react');
-var Router = require('react-router');
 
 var Reddit = require('../reddit');
 var CommentItem = require('../components/comment-item');
 var DetailView = require('../components/detail-view');
 
 var CommentsView = React.createClass({
-  mixins: [ Router.State ],
+  contextTypes: {
+    router: React.PropTypes.func.isRequired
+  },
 
   getInitialState() {
-    var params = this.getParams();
+    var params = this.context.router.getCurrentParams();
 
     return {
       subreddit: params.name,
