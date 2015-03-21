@@ -16,15 +16,21 @@ var CommentsView = React.createClass({
       subreddit: params.name,
       id: params.id,
       comments: [],
-      detail: {}
+      detail: {},
+      loading: false
     };
   },
 
   componentDidMount() {
+    this.setState({
+      loading: true
+    });
+
     Reddit.getComments(this.state.subreddit, this.state.id).then(data => {
       this.setState({
         detail: data.detail,
-        comments: data.comments
+        comments: data.comments,
+        loading: false
       });
     });
   },
@@ -40,7 +46,7 @@ var CommentsView = React.createClass({
 
     return (
       <div>
-        <DetailView data={this.state.detail}/>
+        {this.state.loading ? <h3>Loading</h3> : <DetailView data={this.state.detail}/>}
         {items}
       </div>
     );
