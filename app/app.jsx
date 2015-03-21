@@ -23,7 +23,7 @@ var App = React.createClass({
             <h1 className="header-title">Reddit app</h1>
           </header>
 
-          <div className={classnames('content', { 'slide-out': this.state.showSidebar })}>
+          <div className={classnames('content', 'scrollable', { 'slide-out': this.state.showSidebar })}>
             <div className="inside">
               <Router.RouteHandler {...this.props}/>
             </div>
