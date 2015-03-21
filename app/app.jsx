@@ -24,6 +24,7 @@ var App = React.createClass({
           </header>
 
           <div className={classnames('content', 'scrollable', { 'slide-out': this.state.showSidebar })}>
+            { this.state.showSidebar ? <div className="overlay" onClick={() => this.setState({ showSidebar: false })}></div> : '' }
             <div className="inside">
               <Router.RouteHandler {...this.props}/>
             </div>
