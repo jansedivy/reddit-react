@@ -54,9 +54,10 @@ var FavoritesView = React.createClass({
   },
 
   handleRemove(name) {
-    var subreddits = this.state.subreddits.filter(item => item.name !== name);
+    Favorites.remove(name);
+
     this.setState({
-      subreddits: subreddits
+      subreddits: Favorites.all()
     });
   },
 

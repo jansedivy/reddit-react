@@ -15,6 +15,10 @@ var Favorites = {
     }
 
     return store.set('favorites', Favorites.all().concat({ name }));
+  },
+
+  remove: function(name) {
+    store.set('favorites', Favorites.all().filter(item => item.name !== name));
   }
 };
 
