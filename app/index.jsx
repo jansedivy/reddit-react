@@ -8,6 +8,8 @@ var routes = require('./routes');
 var fastclick = require('fastclick');
 fastclick.attach(document.body);
 
+React.initializeTouchEvents(true);
+
 Router.run(routes, (Handler) => {
   React.render(<Handler/>, document.body);
 });
