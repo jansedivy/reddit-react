@@ -20,6 +20,7 @@ body {
 
 a {
   color: hsl(200, 50%, 50%);
+  text-decoration: none;
 }
 
 a:active {
@@ -225,10 +226,6 @@ a:active {
   padding: 0;
   border-top: 1px solid #d3d3d3;
   overflow: hidden;
-
-  a {
-    text-decoration: none;
-  }
 
   .favorite-item {
     margin: 0;
