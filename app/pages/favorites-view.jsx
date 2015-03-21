@@ -1,6 +1,7 @@
 var React = require('react');
 var Link = require('react-router').Link;
 var Favorites = require('../favorites');
+var FavoriteItem = require('../components/favorite-item');
 
 var FavoritesView = React.createClass({
   getInitialState() {
@@ -55,9 +56,9 @@ var FavoritesView = React.createClass({
   render() {
     return (
       <div>
-        <ul>
+        <ul className="favorite-list">
           {this.state.subreddits.map((item) =>
-                                     <li key={item.name}><Link to="subreddit" params={item}>{item.name}</Link></li>
+                                     <FavoriteItem key={item.name} item={item}/>
                                     )}
         </ul>
         {this.getAddPartial()}
