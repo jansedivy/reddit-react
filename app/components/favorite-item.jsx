@@ -68,6 +68,10 @@ var FavoriteItem = React.createClass({
       var relX = x - this.state.startX;
       var relY = y - this.state.startY;
 
+      if (relX < 0) {
+        relX = 0;
+      }
+
       if (!this.state.prevent) {
         if (Math.abs(relY) > 6) {
           this.setState({
