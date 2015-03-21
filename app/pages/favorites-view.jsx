@@ -13,7 +13,7 @@ var FavoritesView = React.createClass({
   handleSubmit(e) {
     e.preventDefault();
 
-    var input = this.refs.newSubreddit.getDOMNode().value.trim();
+    var input = React.findDOMNode(this.refs.newSubreddit).value.trim();
 
     Favorites.add(input);
 
