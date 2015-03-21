@@ -10,7 +10,8 @@ var CommentItem = React.createClass({
   getInitialState() {
     return {
       showNested: true,
-      comments: this.props.data.comments
+      comments: this.props.data.comments,
+      loading: false
     };
   },
 
@@ -24,9 +25,14 @@ var CommentItem = React.createClass({
 
   loadNested(e, data) {
     e.preventDefault();
+    this.setState({
+      loading: true
+    });
+
     Reddit.getMoreComments(this.props.topic.name, data).then(result => {
       this.setState({
-        comments: result
+        comments: result,
+        loading: false
       });
     });
   },
@@ -34,7 +40,11 @@ var CommentItem = React.createClass({
   getNestedComments() {
     var nestedComments = this.state.comments.map((item) => {
       if (item.more) {
-        return <a href="#" className="load-more-nested-comments" onClick={(e) => this.loadNested(e, item) } key={item.id}>More</a>;
+        return (
+          <a href="#" className="load-more-nested-comments" onClick={(e) => this.loadNested(e, item) } key={item.id}>
+          {this.state.loading ? 'Loading...' : 'More'}
+          </a>
+        );
       } else {
         return <CommentItem data={item} key={item.id} topic={this.props.topic}/>;
       }

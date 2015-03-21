@@ -151,6 +151,21 @@ body {
   border-right: 0;
   margin: 20px 0;
 
+  .load-more-nested-comments {
+    background: #ed7131;
+    width: 140px;
+    padding: 13px 7px;
+    display: inline-block;
+    text-align: center;
+    color: #EFEFEF;
+    text-decoration: none;
+    border: 1px solid #cf5f20;
+
+    &:active {
+      background: darken(#ed7131, 10%);
+    }
+  }
+
   .comment {
     margin-left: 3%;
   }
