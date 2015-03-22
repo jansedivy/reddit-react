@@ -31,13 +31,15 @@ var CommentItem = React.createClass({
 
     Reddit.getMoreComments(this.props.topic.name, data).then(result => {
       this.setState({
-        comments: result,
+        comments: this.state.comments.filter(item => !item.more).concat(result),
         loading: false
       });
     });
   },
 
   getNestedComments() {
+    var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
     var nestedComments = this.state.comments.map((item) => {
       if (item.more) {
         return (
@@ -54,7 +56,13 @@ var CommentItem = React.createClass({
       return;
     }
 
-    return <div className="nested-comments">{nestedComments}</div>;
+    return (
+      <div className="nested-comments">
+        <ReactCSSTransitionGroup transitionName="example">
+          {nestedComments}
+        </ReactCSSTransitionGroup>
+      </div>
+    );
   },
 
   render() {
@@ -68,6 +76,7 @@ var CommentItem = React.createClass({
                className={classnames('toggle-comment-visiblity', { 'hidden-comments': !this.state.showNested })}
                onClick={this.toggleNestedComments}></a> : ''}
         </div>
+
         {this.getNestedComments()}
       </div>
     );
