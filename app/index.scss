@@ -236,6 +236,7 @@ a:active {
   margin: 0;
   padding: 0;
   border: 1px solid #d3d3d3;
+  border-bottom: 0;
   overflow: hidden;
 
   .favorite-item {
@@ -246,10 +247,6 @@ a:active {
     line-height: 50px;
     border-bottom: 1px solid #d3d3d3;
     position: relative;
-
-    &:last-child {
-      border-bottom: 0;
-    }
 
     .list-item-inside {
       position: absolute;
