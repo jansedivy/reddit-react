@@ -49,7 +49,7 @@ var FavoritesView = React.createClass({
     if (this.state.showAddForm) {
       return (
         <form onBlur={this.closeForm} onSubmit={this.handleSubmit}>
-          <input autoFocus type="text" ref="newSubreddit"/>
+          <input autoFocus type="text" ref="newSubreddit" className="new-favorite-input"/>
         </form>
       );
     } else {

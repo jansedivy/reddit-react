@@ -297,3 +297,14 @@ a:active {
     background: darken(#fc611f, 10%);
   }
 }
+
+.new-favorite-input {
+  border: 0;
+  outline: none;
+  width: 100%;
+  padding: 8px;
+  background: #eaeaea;
+  border-radius: 0;
+  margin: 20px 0;
+  font-size: 20px;
+}
