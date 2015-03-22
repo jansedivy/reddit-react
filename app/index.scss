@@ -250,7 +250,6 @@ a:active {
     position: relative;
 
     .list-item-inside {
-      transition: all .1s ease-out;
       position: absolute;
       background: white;
       top: 0;
@@ -258,6 +257,10 @@ a:active {
       right: 0;
       bottom: 0;
       z-index: 2;
+
+      &.animate {
+        transition: all .3s ease-out;
+      }
 
       a {
         padding: 0 10px;

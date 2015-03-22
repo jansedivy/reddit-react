@@ -1,5 +1,6 @@
 var React = require('react');
 var { Link } = require('react-router');
+var classnames = require('classnames');
 
 var PureRenderMixin = React.addons.PureRenderMixin;
 
@@ -18,7 +19,8 @@ var FavoriteItem = React.createClass({
       holding: true,
       prevent: false,
       scrolling: false,
-      open: false
+      open: false,
+      animate: true
     };
   },
 
@@ -28,6 +30,7 @@ var FavoriteItem = React.createClass({
     var y = touch.pageY - e.target.offsetTop;
 
     this.setState({
+      animate: false,
       startX: x,
       startY: y,
       prevX: x,
@@ -55,6 +58,7 @@ var FavoriteItem = React.createClass({
     }
 
     this.setState({
+      animate: true,
       holding: false,
       translation: 0
     });
@@ -119,7 +123,8 @@ var FavoriteItem = React.createClass({
       holding: true,
       prevent: false,
       scrolling: false,
-      open: false
+      open: false,
+      animate: true
     });
   },
 
@@ -135,7 +140,7 @@ var FavoriteItem = React.createClass({
 
     return (
       <li className="favorite-item" onTouchEnd={this.handleTouchEnd} onTouchMove={this.handleTouchMove} onTouchStart={this.handleTouchStart}>
-        <div style={style} className="list-item-inside">
+        <div style={style} className={classnames('list-item-inside', { 'animate': this.state.animate })}>
           <Link to="subreddit" params={this.props.item}>{this.props.item.name}</Link>
         </div>
         <div onClick={this.close} className="list-item-behind">
