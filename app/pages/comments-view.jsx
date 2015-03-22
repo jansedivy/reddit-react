@@ -1,8 +1,8 @@
 var React = require('react');
 
 var Reddit = require('../reddit');
-var CommentItem = require('../components/comment-item');
 var DetailView = require('../components/detail-view');
+var CommentList = require('../components/comment-list');
 
 var CommentsView = React.createClass({
   contextTypes: {
@@ -36,18 +36,10 @@ var CommentsView = React.createClass({
   },
 
   render() {
-    var items = this.state.comments.map(item => {
-      if (item.more) {
-        return <h1 key={item.id}>More</h1>;
-      } else {
-        return <CommentItem data={item} key={item.id} topic={this.state.detail}/>;
-      }
-    });
-
     return (
       <div>
         {this.state.loading ? <h3>Loading</h3> : <DetailView data={this.state.detail}/>}
-        {items}
+        <CommentList comments={this.state.comments} detail={this.state.detail} loadNestedFor={this.loadNestedFor}/>
       </div>
     );
   }
