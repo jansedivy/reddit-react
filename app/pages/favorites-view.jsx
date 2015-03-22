@@ -3,7 +3,11 @@ var Link = require('react-router').Link;
 var Favorites = require('../favorites');
 var FavoriteItem = require('../components/favorite-item');
 
+var PureRenderMixin = React.addons.PureRenderMixin;
+
 var FavoritesView = React.createClass({
+  mixins: [PureRenderMixin],
+
   getInitialState() {
     return {
       subreddits: Favorites.all(),

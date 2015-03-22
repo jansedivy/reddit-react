@@ -1,7 +1,11 @@
 var React = require('react');
 var { Link } = require('react-router');
 
+var PureRenderMixin = React.addons.PureRenderMixin;
+
 var FavoriteItem = React.createClass({
+  mixins: [PureRenderMixin],
+
   getInitialState() {
     return {
       translation: 0,
