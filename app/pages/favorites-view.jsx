@@ -53,7 +53,7 @@ var FavoritesView = React.createClass({
         </form>
       );
     } else {
-      return <a href="#" onClick={this.showAdd}>Add</a>;
+      return <a href="#" className="add-new-favorite-button" onClick={this.showAdd}>Add</a>;
     }
   },
 

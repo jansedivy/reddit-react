@@ -281,3 +281,18 @@ a:active {
     }
   }
 }
+
+.add-new-favorite-button {
+  margin: 20px 0;
+  padding: 20px;
+  width: 100%;
+  background: #fc611f;
+  color: white;
+  display: inline-block;
+  text-align: center;
+
+  &:active {
+    color: white;
+    background: darken(#fc611f, 10%);
+  }
+}
