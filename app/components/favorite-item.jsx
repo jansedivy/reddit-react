@@ -8,17 +8,18 @@ var FavoriteItem = React.createClass({
   mixins: [PureRenderMixin],
 
   getInitialState() {
+    this.startX = null;
+    this.startY = null;
+    this.prevX = null;
+    this.prevY = null;
+    this.dx = 0;
+    this.dy = 0;
+    this.holding = true;
+    this.prevent = false;
+    this.scrolling = false;
+
     return {
       translation: 0,
-      startX: null,
-      startY: null,
-      prevX: null,
-      prevY: null,
-      dx: 0,
-      dy: 0,
-      holding: true,
-      prevent: false,
-      scrolling: false,
       open: false,
       animate: true
     };
@@ -29,15 +30,16 @@ var FavoriteItem = React.createClass({
     var x = touch.pageX - e.target.offsetLeft;
     var y = touch.pageY - e.target.offsetTop;
 
+    this.startX = x;
+    this.startY = y;
+    this.prevX = x;
+    this.prevY = y;
+    this.holding = true;
+    this.prevent = false;
+    this.scrolling = false;
+
     this.setState({
       animate: false,
-      startX: x,
-      startY: y,
-      prevX: x,
-      prevY: y,
-      holding: true,
-      prevent: false,
-      scrolling: false,
       translation: 0
     });
   },
@@ -51,52 +53,49 @@ var FavoriteItem = React.createClass({
       });
     }
 
-    if (this.state.dx > 25) {
+    if (this.dx > 25) {
       this.setState({
         open: true
       });
     }
 
+    this.scrolling = false;
+    this.prevent = false;
+    this.holding = false;
+
     this.setState({
       animate: true,
-      scrolling: false,
-      prevent: false,
-      holding: false,
       translation: 0
     });
   },
 
   handleTouchMove(e) {
-    if (!this.state.scrolling && this.state.holding) {
+    if (!this.scrolling && this.holding) {
       var touch = e.touches[0];
       var x = touch.pageX - e.target.offsetLeft;
       var y = touch.pageY - e.target.offsetTop;
 
-      var dx = x - this.state.prevX;
-      var dy = y - this.state.prevY;
+      var dx = x - this.prevX;
+      var dy = y - this.prevY;
 
-      var relX = x - this.state.startX;
-      var relY = y - this.state.startY;
+      var relX = x - this.startX;
+      var relY = y - this.startY;
 
       if (relX < 0) {
         relX = 0;
       }
 
-      if (!this.state.prevent) {
+      if (!this.prevent) {
         if (Math.abs(relY) > 6) {
-          this.setState({
-            scrolling: true
-          });
+          this.scrolling = true;
         }
 
         if (Math.abs(relX) > 4) {
-          this.setState({
-            prevent: true
-          });
+          this.prevent = true;
         }
       }
 
-      if (this.state.prevent) {
+      if (this.prevent) {
         e.preventDefault();
 
         this.setState({
@@ -104,12 +103,10 @@ var FavoriteItem = React.createClass({
         });
       }
 
-      this.setState({
-        prevX: x,
-        prevY: y,
-        dx: dx,
-        dy: dy
-      });
+      this.prevX = x;
+      this.prevY = y;
+      this.dx = dx;
+      this.dy = dy;
     }
   },
 
@@ -119,36 +116,30 @@ var FavoriteItem = React.createClass({
       var x = touch.pageX - e.target.offsetLeft;
       var y = touch.pageY - e.target.offsetTop;
 
-      this.setState({
-        behindStartX: x,
-        behindStartY: y
-      });
+      this.behindStartX = x;
+      this.behindStartY = y;
     }
   },
 
   handleBehindTouchMove(e) {
-    if (this.state.open && !this.state.scrolling) {
+    if (this.state.open && !this.scrolling) {
       var touch = e.touches[0];
       var x = touch.pageX - e.target.offsetLeft;
       var y = touch.pageY - e.target.offsetTop;
 
-      var dx = x - this.state.behindStartX;
-      var dy = y - this.state.behindStartY;
+      var dx = x - this.behindStartX;
+      var dy = y - this.behindStartY;
 
-      if (this.state.prevent) {
+      if (this.prevent) {
         e.preventDefault();
       }
 
       if (Math.abs(dy) > 20) {
-        this.setState({
-          scrolling: true
-        });
+        this.scrolling = true;
       } else if (dx < -40) {
         this.close();
 
-        this.setState({
-          prevent: true
-        });
+        this.prevent = true;
 
         e.preventDefault();
       }
@@ -156,29 +147,27 @@ var FavoriteItem = React.createClass({
   },
 
   handleBehindTouchEnd() {
-    this.setState({
-      prevent: false,
-      scrolling: false
-    });
+    this.prevent = false;
+    this.scrolling = false;
   },
 
   close() {
+    this.startX = null;
+    this.startY = null;
+    this.prevX = null;
+    this.prevY = null;
+    this.dx = 0;
+    this.dy = 0;
+    this.holding = true;
+    this.prevent = false;
+    this.scrolling = false;
+    this.behindStartX = 0;
+    this.behindStartY = 0;
+
     this.setState({
       translation: 0,
-      startX: null,
-      startY: null,
-      prevX: null,
-      prevY: null,
-      dx: 0,
-      dy: 0,
-      holding: true,
-      prevent: false,
-      scrolling: false,
       open: false,
-      animate: true,
-
-      behindStartX: 0,
-      behindStartY: 0
+      animate: true
     });
   },
 
