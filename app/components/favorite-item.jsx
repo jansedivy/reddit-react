@@ -59,6 +59,8 @@ var FavoriteItem = React.createClass({
 
     this.setState({
       animate: true,
+      scrolling: false,
+      prevent: false,
       holding: false,
       translation: 0
     });
@@ -111,6 +113,55 @@ var FavoriteItem = React.createClass({
     }
   },
 
+  handleBehindTouchStart(e) {
+    if (this.state.open) {
+      var touch = e.touches[0];
+      var x = touch.pageX - e.target.offsetLeft;
+      var y = touch.pageY - e.target.offsetTop;
+
+      this.setState({
+        behindStartX: x,
+        behindStartY: y
+      });
+    }
+  },
+
+  handleBehindTouchMove(e) {
+    if (this.state.open && !this.state.scrolling) {
+      var touch = e.touches[0];
+      var x = touch.pageX - e.target.offsetLeft;
+      var y = touch.pageY - e.target.offsetTop;
+
+      var dx = x - this.state.behindStartX;
+      var dy = y - this.state.behindStartY;
+
+      if (this.state.prevent) {
+        e.preventDefault();
+      }
+
+      if (Math.abs(dy) > 20) {
+        this.setState({
+          scrolling: true
+        });
+      } else if (dx < -40) {
+        this.close();
+
+        this.setState({
+          prevent: true
+        });
+
+        e.preventDefault();
+      }
+    }
+  },
+
+  handleBehindTouchEnd() {
+    this.setState({
+      prevent: false,
+      scrolling: false
+    });
+  },
+
   close() {
     this.setState({
       translation: 0,
@@ -124,7 +175,10 @@ var FavoriteItem = React.createClass({
       prevent: false,
       scrolling: false,
       open: false,
-      animate: true
+      animate: true,
+
+      behindStartX: 0,
+      behindStartY: 0
     });
   },
 
@@ -139,11 +193,11 @@ var FavoriteItem = React.createClass({
     };
 
     return (
-      <li className="favorite-item" onTouchEnd={this.handleTouchEnd} onTouchMove={this.handleTouchMove} onTouchStart={this.handleTouchStart}>
-        <div style={style} className={classnames('list-item-inside', { 'animate': this.state.animate })}>
+      <li className="favorite-item">
+        <div style={style} className={classnames('list-item-inside', { 'animate': this.state.animate })} onTouchEnd={this.handleTouchEnd} onTouchMove={this.handleTouchMove} onTouchStart={this.handleTouchStart}>
           <Link to="subreddit" params={this.props.item}>{this.props.item.name}</Link>
         </div>
-        <div onClick={this.close} className="list-item-behind">
+        <div onTouchEnd={this.handleBehindTouchEnd} onTouchMove={this.handleBehindTouchMove} onTouchStart={this.handleBehindTouchStart} className="list-item-behind">
           <a href="#" onClick={this.remove}>Remove</a>
         </div>
       </li>
