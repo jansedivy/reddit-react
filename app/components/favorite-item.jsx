@@ -1,6 +1,7 @@
 var React = require('react');
 var { Link } = require('react-router');
 var classnames = require('classnames');
+var vendorPrefix = require('vendor-prefix');
 
 var PureRenderMixin = React.addons.PureRenderMixin;
 
@@ -178,7 +179,7 @@ var FavoriteItem = React.createClass({
 
   render() {
     var style = {
-      '-webkit-transform': 'translateX(' + (this.state.open ? '100%' : this.state.translation + 'px') + ')'
+      [vendorPrefix('transform')]: 'translateX(' + (this.state.open ? '100%' : this.state.translation + 'px') + ')'
     };
 
     return (
