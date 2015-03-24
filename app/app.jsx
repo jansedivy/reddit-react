@@ -35,7 +35,7 @@ var App = React.createClass({
           <div className="sidebar-inside">
             <h1>Sidebar</h1>
 
-            <ul>
+            <ul className="list">
               <li><Router.Link to="/">Favorites</Router.Link></li>
               <li><Router.Link to="/search">Search</Router.Link></li>
             </ul>
