@@ -23,8 +23,8 @@ var App = React.createClass({
       <div className="main-container">
         <div className="app">
           <header className={classnames('main-header', { 'slide-out': this.state.showSidebar })}>
-            <a href="#" className="toggle-sidebar" onClick={this.handleClick}>Toggle sidebar</a>
             <h1 className="header-title">Reddit app</h1>
+            <a href="#" className="toggle-sidebar" onClick={this.handleClick}>Toggle sidebar</a>
           </header>
 
           <div className={classnames('content', 'scrollable', { 'slide-out': this.state.showSidebar })}>
