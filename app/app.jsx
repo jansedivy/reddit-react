@@ -3,6 +3,10 @@ var Router = require('react-router');
 var classnames = require('classnames');
 
 var App = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.func
+  },
+
   getInitialState() {
     return {
       showSidebar: false
@@ -18,13 +22,19 @@ var App = React.createClass({
     this.setState({ showSidebar: !this.state.showSidebar });
   },
 
+  goBack(e) {
+    e.preventDefault();
+    this.context.router.goBack();
+  },
+
   render() {
     return (
       <div className="main-container">
         <div className="app">
           <header className={classnames('main-header', { 'slide-out': this.state.showSidebar })}>
+            <a href="#" className="back-button nav-button" onClick={this.goBack}>Toggle sidebar</a>
             <h1 className="header-title">Reddit app</h1>
-            <a href="#" className="toggle-sidebar" onClick={this.handleClick}>Toggle sidebar</a>
+            <a href="#" className="toggle-sidebar nav-button" onClick={this.handleClick}>Toggle sidebar</a>
           </header>
 
           <div className={classnames('content', 'scrollable', { 'slide-out': this.state.showSidebar })}>
