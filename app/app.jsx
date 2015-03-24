@@ -11,6 +11,10 @@ var App = React.createClass({
 
   handleClick(e) {
     e.preventDefault();
+    this.closeSidebar();
+  },
+
+  closeSidebar() {
     this.setState({ showSidebar: !this.state.showSidebar });
   },
 
@@ -36,8 +40,8 @@ var App = React.createClass({
             <h1>Sidebar</h1>
 
             <ul className="list">
-              <li><Router.Link to="/">Favorites</Router.Link></li>
-              <li><Router.Link to="/search">Search</Router.Link></li>
+              <li><Router.Link to="/" onClick={this.closeSidebar}>Favorites</Router.Link></li>
+              <li><Router.Link to="/search" onClick={this.closeSidebar}>Search</Router.Link></li>
             </ul>
           </div>
         </div>
