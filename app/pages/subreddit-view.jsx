@@ -34,13 +34,13 @@ var SubredditView = React.createClass({
   },
 
   reload() {
-    this.setState({ isLoading: true });
-
-    Reddit.subreddit(this.state.name, { lastId: this.state.lastId, sort: this.state.sort }).then(data => {
-      this.setState({
-        items: data.items,
-        lastId: data.lastId,
-        isLoading: false
+    this.setState({ isLoading: true }, () => {
+      Reddit.subreddit(this.state.name, { sort: this.state.sort }).then(data => {
+        this.setState({
+          items: data.items,
+          lastId: data.lastId,
+          isLoading: false
+        });
       });
     });
   },
