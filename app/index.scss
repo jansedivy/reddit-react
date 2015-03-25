@@ -354,3 +354,39 @@ a:active {
   margin: 20px 0;
   font-size: 20px;
 }
+
+.toggle-list {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border: 1px solid #AFBCCA;
+
+  > li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline-block;
+    width: 16.666666667%;
+    border-right: 1px solid #AFBCCA;
+
+    &:last-child {
+      border-right: 0;
+    }
+  }
+
+  a {
+    display: inline-block;
+    background: #d7dde8;
+    width: 100%;
+    padding: 10px 0;
+
+    &.active {
+      background: #dde6f7;
+    }
+
+    &:active {
+      background: darken(#d7dde8, 10%);
+      color: #555B69;
+    }
+  }
+}

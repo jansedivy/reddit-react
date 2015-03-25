@@ -69,14 +69,14 @@ var SubredditView = React.createClass({
 
     return (
       <div>
-        <ul>
-          <li><a href="#" onClick={this.handleSortButton.bind(this, 'hot')}>Hot</a></li>
-          <li><a href="#" onClick={this.handleSortButton.bind(this, 'top')}>Top</a></li>
+        <ul className="sort-list toggle-list">
+          <li><a href="#" className={this.state.sort === 'hot' ? 'active' : ''} onClick={this.handleSortButton.bind(this, 'hot')}>Hot</a></li>
+          <li><a href="#" className={this.state.sort === 'top' ? 'active' : ''} onClick={this.handleSortButton.bind(this, 'top')}>Top</a></li>
 
-          <li><a href="#" onClick={this.handleSortButton.bind(this, 'new')}>New</a></li>
-          <li><a href="#" onClick={this.handleSortButton.bind(this, 'rising')}>Rising</a></li>
-          <li><a href="#" onClick={this.handleSortButton.bind(this, 'controversial')}>Controversial</a></li>
-          <li><a href="#" onClick={this.handleSortButton.bind(this, 'gilded')}>Gilded</a></li>
+          <li><a href="#" className={this.state.sort === 'new' ? 'active' : ''} onClick={this.handleSortButton.bind(this, 'new')}>New</a></li>
+          <li><a href="#" className={this.state.sort === 'rising' ? 'active' : ''} onClick={this.handleSortButton.bind(this, 'rising')}>Rising</a></li>
+          <li><a href="#" className={this.state.sort === 'controversial' ? 'active' : ''} onClick={this.handleSortButton.bind(this, 'controversial')}>Controversial</a></li>
+          <li><a href="#" className={this.state.sort === 'gilded' ? 'active' : ''} onClick={this.handleSortButton.bind(this, 'gilded')}>Gilded</a></li>
         </ul>
 
         {main}
