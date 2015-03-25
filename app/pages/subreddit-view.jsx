@@ -14,7 +14,8 @@ var SubredditView = React.createClass({
       name: this.context.router.getCurrentParams().name,
       lastId: null,
       items: [],
-      isLoading: true
+      isLoading: true,
+      sort: 'hot'
     };
   },
 
@@ -23,7 +24,7 @@ var SubredditView = React.createClass({
 
     this.setState({ isLoading: true });
 
-    Reddit.subreddit(this.state.name, { lastId: this.state.lastId }).then(data => {
+    Reddit.subreddit(this.state.name, { lastId: this.state.lastId, sort: this.state.sort }).then(data => {
       this.setState({
         items: this.state.items.concat(data.items),
         lastId: data.lastId,
@@ -32,16 +33,53 @@ var SubredditView = React.createClass({
     });
   },
 
+  reload() {
+    this.setState({ isLoading: true });
+
+    Reddit.subreddit(this.state.name, { lastId: this.state.lastId, sort: this.state.sort }).then(data => {
+      this.setState({
+        items: data.items,
+        lastId: data.lastId,
+        isLoading: false
+      });
+    });
+  },
+
+  handleSortButton(type, e) {
+    e.preventDefault();
+    this.setState({
+      sort: type
+    }, () => this.reload());
+  },
+
   componentDidMount() {
-    Reddit.subreddit(this.state.name).then(data => this.setState({ items: data.items, lastId: data.lastId, isLoading: false }));
+    this.reload();
   },
 
   render() {
-    return (
+    var main = this.state.isLoading ? (
+      <span>Loading</span>
+    ) : (
       <div>
         <h2>{this.state.name}</h2>
         <ListView items={this.state.items}/>
-        {!this.state.isLoading ? <a href="#" onClick={this.loadMore}>Load more</a> : <span>Loading</span>}
+        <a href="#" onClick={this.loadMore}>Load more</a>
+      </div>
+    );
+
+    return (
+      <div>
+        <ul>
+          <li><a href="#" onClick={this.handleSortButton.bind(this, 'hot')}>Hot</a></li>
+          <li><a href="#" onClick={this.handleSortButton.bind(this, 'top')}>Top</a></li>
+
+          <li><a href="#" onClick={this.handleSortButton.bind(this, 'new')}>New</a></li>
+          <li><a href="#" onClick={this.handleSortButton.bind(this, 'rising')}>Rising</a></li>
+          <li><a href="#" onClick={this.handleSortButton.bind(this, 'controversial')}>Controversial</a></li>
+          <li><a href="#" onClick={this.handleSortButton.bind(this, 'gilded')}>Gilded</a></li>
+        </ul>
+
+        {main}
       </div>
     );
   }
