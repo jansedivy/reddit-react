@@ -3,6 +3,7 @@ var React = require('react');
 var Reddit = require('../reddit');
 
 var ListView = require('../components/list-view');
+var Spinner = require('../components/spinner');
 
 var SubredditView = React.createClass({
   contextTypes: {
@@ -58,10 +59,9 @@ var SubredditView = React.createClass({
 
   render() {
     var main = this.state.isLoading ? (
-      <span>Loading</span>
+      <Spinner/>
     ) : (
       <div>
-        <h2>{this.state.name}</h2>
         <ListView items={this.state.items}/>
         <a href="#" onClick={this.loadMore}>Load more</a>
       </div>
@@ -75,6 +75,7 @@ var SubredditView = React.createClass({
           <li><a href="#" className={this.state.sort === 'new' ? 'active' : ''} onClick={this.handleSortButton.bind(this, 'new')}>New</a></li>
         </ul>
 
+        <h2>{this.state.name}</h2>
         {main}
       </div>
     );

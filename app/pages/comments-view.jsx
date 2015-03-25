@@ -3,6 +3,7 @@ var React = require('react');
 var Reddit = require('../reddit');
 var DetailView = require('../components/detail-view');
 var CommentList = require('../components/comment-list');
+var Spinner = require('../components/spinner');
 
 var CommentsView = React.createClass({
   contextTypes: {
@@ -37,10 +38,10 @@ var CommentsView = React.createClass({
 
   render() {
     return this.state.loading ? (
-      <h3>Loading</h3>
+      <Spinner/>
     ) : (
       <div>
-        <DetailView data={this.state.detail}/>;
+        <DetailView data={this.state.detail}/>
         <CommentList comments={this.state.comments} detail={this.state.detail} loadNestedFor={this.loadNestedFor}/>
       </div>
     );
