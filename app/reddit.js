@@ -4,10 +4,11 @@ var extend = require('extend');
 var Reddit = {
   subreddit(subreddit, options) {
     options = extend(true, {
-      lastId: ''
+      lastId: '',
+      sort: 'hot'
     }, options);
 
-    return Fetch.getJSON('http://www.reddit.com/r/' + subreddit + '.json?after=' + options.lastId).then(function(data) {
+    return Fetch.getJSON('http://www.reddit.com/r/' + subreddit + '/' + options.sort + '.json?after=' + options.lastId).then(function(data) {
       return {
         lastId: data.data.after,
         items: data.data.children.map(Reddit._formatTopic)
