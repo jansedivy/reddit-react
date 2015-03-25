@@ -2,7 +2,11 @@ var React = require('react');
 var Link = require('react-router').Link;
 var DateFormat = require('./date-format');
 
+var PureRenderMixin = React.addons.PureRenderMixin;
+
 var RecordItem = React.createClass({
+  mixins: [PureRenderMixin],
+
   getTitleLink() {
     var title = this.props.data.title;
 

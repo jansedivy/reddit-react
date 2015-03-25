@@ -2,7 +2,11 @@ var React = require('react');
 var Markdown = require('./markdown');
 var DateFormat = require('./date-format');
 
+var PureRenderMixin = React.addons.PureRenderMixin;
+
 var DetailView = React.createClass({
+  mixins: [PureRenderMixin],
+
   getThumbnail() {
     var path = this.props.data.image;
     if (path && path !== 'self' && path !== 'default') {

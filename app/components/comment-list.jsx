@@ -6,7 +6,11 @@ var DateFormat = require('./date-format');
 
 var Reddit = require('../reddit');
 
+var PureRenderMixin = React.addons.PureRenderMixin;
+
 var CommentList = React.createClass({
+  mixins: [PureRenderMixin],
+
   getInitialState() {
     return {
       loading: false,
@@ -49,6 +53,8 @@ var CommentList = React.createClass({
 });
 
 var CommentItem = React.createClass({
+  mixins: [PureRenderMixin],
+
   getInitialState() {
     return {
       showNested: true,

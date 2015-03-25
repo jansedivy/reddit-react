@@ -5,7 +5,11 @@ var Reddit = require('../reddit');
 var ListView = require('../components/list-view');
 var Spinner = require('../components/spinner');
 
+var PureRenderMixin = React.addons.PureRenderMixin;
+
 var SubredditView = React.createClass({
+  mixins: [PureRenderMixin],
+
   contextTypes: {
     router: React.PropTypes.func.isRequired
   },
