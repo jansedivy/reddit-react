@@ -179,7 +179,7 @@ var FavoriteItem = React.createClass({
 
   render() {
     var style = {
-      [vendorPrefix('transform')]: 'translateX(' + (this.state.open ? '100%' : this.state.translation + 'px') + ')'
+      [vendorPrefix('transform')]: 'translate3d(' + (this.state.open ? '100%' : this.state.translation + 'px') + ', 0, 0)'
     };
 
     return (
