@@ -54,7 +54,7 @@ var FavoriteItem = React.createClass({
       });
     }
 
-    if (this.dx > 15) {
+    if (this.dx > 10) {
       this.setState({
         open: true
       });
