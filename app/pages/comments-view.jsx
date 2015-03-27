@@ -46,7 +46,7 @@ var CommentsView = React.createClass({
     ) : (
       <div>
         <DetailView data={this.state.detail}/>
-        <CommentList comments={this.state.comments} detail={this.state.detail} loadNestedFor={this.loadNestedFor}/>
+        <CommentList comments={this.state.comments} detail={this.state.detail}/>
       </div>
     );
   }
