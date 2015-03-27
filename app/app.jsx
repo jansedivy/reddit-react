@@ -7,9 +7,24 @@ var App = React.createClass({
     router: React.PropTypes.func
   },
 
+  childContextTypes: {
+    pushRoute: React.PropTypes.func
+  },
+
+  getChildContext() {
+    return { pushRoute: this.pushRoute };
+  },
+
+  pushRoute() {
+    this.setState({
+      routesHistory: this.state.routesHistory.concat([{ name: this.context.router.getCurrentPath() }])
+    });
+  },
+
   getInitialState() {
     return {
-      showSidebar: false
+      showSidebar: false,
+      routesHistory: []
     };
   },
 
@@ -24,7 +39,14 @@ var App = React.createClass({
 
   goBack(e) {
     e.preventDefault();
-    this.context.router.goBack();
+
+    if (this.state.routesHistory.length > 0) {
+      this.context.router.transitionTo(this.state.routesHistory.pop().name);
+
+      this.setState({
+        routesHistory: this.state.routesHistory
+      });
+    }
   },
 
   render() {
@@ -32,7 +54,9 @@ var App = React.createClass({
       <div className="main-container">
         <div className="app">
           <header className={classnames('main-header', { 'slide-out': this.state.showSidebar })}>
-            <a href="#" className="back-button nav-button" onClick={this.goBack}>Toggle sidebar</a>
+
+            { this.state.routesHistory.length > 0 ? <a href="#" className="back-button nav-button" onClick={this.goBack}>Toggle sidebar</a> : null }
+
             <h1 className="header-title">Reddit app</h1>
             <a href="#" className="toggle-sidebar nav-button" onClick={this.handleClick}>Toggle sidebar</a>
           </header>

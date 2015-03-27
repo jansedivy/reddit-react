@@ -8,6 +8,10 @@ var PureRenderMixin = React.addons.PureRenderMixin;
 var FavoriteItem = React.createClass({
   mixins: [PureRenderMixin],
 
+  contextTypes: {
+    pushRoute: React.PropTypes.func
+  },
+
   getInitialState() {
     this.startX = null;
     this.startY = null;
@@ -185,7 +189,7 @@ var FavoriteItem = React.createClass({
     return (
       <li className="favorite-item">
         <div style={style} className={classnames('list-item-inside', { 'animate': this.state.animate })} onTouchEnd={this.handleTouchEnd} onTouchMove={this.handleTouchMove} onTouchStart={this.handleTouchStart}>
-          <Link to="subreddit" params={this.props.item}>{this.props.item.name}</Link>
+          <Link onClick={this.context.pushRoute} to="subreddit" params={this.props.item}>{this.props.item.name}</Link>
         </div>
         <div onTouchEnd={this.handleBehindTouchEnd} onTouchMove={this.handleBehindTouchMove} onTouchStart={this.handleBehindTouchStart} className="list-item-behind">
           <a href="#" onClick={this.remove}>Remove</a>
