@@ -22,6 +22,20 @@ var Reddit = {
     });
   },
 
+  findSubreddit(value, options) {
+    options = extend(true, {
+      limit: 5,
+    }, options);
+
+    return Fetch.getJSON('http://www.reddit.com/subreddits/search.json?q=' + value + '&limit=' + options.limit).then(function(data) {
+      return data.data.children.map((item) => {
+        return {
+          name: item.data.display_name
+        };
+      });
+    });
+  },
+
   getMoreComments(name, item) {
     var query = `?link_id=${name}&children=${item.children.join(',')}&api_type=json`;
 
