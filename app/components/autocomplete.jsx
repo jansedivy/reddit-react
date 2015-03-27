@@ -60,7 +60,7 @@ var AutoComplete = React.createClass({
         {this.state.loading ? (
           <Spinner/>
         ) : (
-          <ul>
+          <ul className="autocomplete-list list">
             {this.state.items.map(item => <li key={item.name}><a href="#" onClick={this.handleClick.bind(this, item)}>{item.name}</a></li>)}
           </ul>
         )}
