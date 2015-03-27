@@ -8,7 +8,8 @@ var App = React.createClass({
   },
 
   childContextTypes: {
-    pushRoute: React.PropTypes.func
+    pushRoute: React.PropTypes.func,
+    clearRoutes: React.PropTypes.func
   },
 
   getChildContext() {
@@ -18,6 +19,12 @@ var App = React.createClass({
   pushRoute() {
     this.setState({
       routesHistory: this.state.routesHistory.concat([{ name: this.context.router.getCurrentPath() }])
+    });
+  },
+
+  clearRoutes() {
+    this.setState({
+      routesHistory: []
     });
   },
 
@@ -49,6 +56,11 @@ var App = React.createClass({
     }
   },
 
+  handleSidebarClick() {
+    this.closeSidebar();
+    this.clearRoutes();
+  },
+
   render() {
     return (
       <div className="main-container">
@@ -74,8 +86,8 @@ var App = React.createClass({
             <h1>Sidebar</h1>
 
             <ul className="list">
-              <li><Router.Link to="/" onClick={this.closeSidebar}>Favorites</Router.Link></li>
-              <li><Router.Link to="/search" onClick={this.closeSidebar}>Search</Router.Link></li>
+              <li><Router.Link to="/" onClick={this.handleSidebarClick}>Favorites</Router.Link></li>
+              <li><Router.Link to="/search" onClick={this.handleSidebarClick}>Search</Router.Link></li>
             </ul>
           </div>
         </div>
