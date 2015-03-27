@@ -2,6 +2,7 @@ var React = require('react');
 var Link = require('react-router').Link;
 var Favorites = require('../favorites');
 var FavoriteItem = require('../components/favorite-item');
+var AutoComplete = require('../components/autocomplete');
 
 var PureRenderMixin = React.addons.PureRenderMixin;
 
@@ -18,7 +19,7 @@ var FavoritesView = React.createClass({
   handleSubmit(e) {
     e.preventDefault();
 
-    var input = React.findDOMNode(this.refs.newSubreddit).value.trim();
+    var input = this.refs.newSubreddit.getValue().trim();
 
     Favorites.add(input);
 
@@ -42,14 +43,30 @@ var FavoritesView = React.createClass({
       showAddForm: false
     });
 
-    this.refs.newSubreddit.getDOMNode().value = '';
+    this.refs.newSubreddit.setValue('');
+  },
+
+  handleBlur() {
+    if (this.refs.newSubreddit.getValue() === '') {
+      this.closeForm();
+    }
+  },
+
+  handleSelect(value) {
+    Favorites.add(value.name);
+
+    this.setState({
+      subreddits: Favorites.all()
+    });
+
+    this.closeForm();
   },
 
   getAddPartial() {
     if (this.state.showAddForm) {
       return (
-        <form onBlur={this.closeForm} onSubmit={this.handleSubmit}>
-          <input autoFocus type="text" ref="newSubreddit" className="new-favorite-input"/>
+        <form onSubmit={this.handleSubmit}>
+          <AutoComplete onBlur={this.handleBlur} ref="newSubreddit" autoFocus className="new-favorite-input" onInputSelect={this.handleSelect}/>
         </form>
       );
     } else {
