@@ -73,6 +73,7 @@ var Reddit = {
       return {
         more: false,
         id: record.id,
+        gold: record.gilded,
         author: record.author,
         text: record.body,
         score: record.score,
