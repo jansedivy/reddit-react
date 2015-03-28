@@ -22,22 +22,32 @@ var CommentsView = React.createClass({
       id: params.id,
       comments: [],
       detail: {},
-      loading: false
+      loading: false,
+      sort: 'hot'
     };
   },
 
   componentDidMount() {
-    this.setState({
-      loading: true
-    });
+    this.reload();
+  },
 
-    Reddit.getComments(this.state.subreddit, this.state.id).then(data => {
-      this.setState({
-        detail: data.detail,
-        comments: data.comments,
-        loading: false
+  reload() {
+    this.setState({ loading: true }, () => {
+      Reddit.getComments(this.state.subreddit, this.state.id, { sort: this.state.sort }).then(data => {
+        this.setState({
+          detail: data.detail,
+          comments: data.comments,
+          loading: false
+        });
       });
     });
+  },
+
+  handleSortButton(type, e) {
+    e.preventDefault();
+    this.setState({
+      sort: type
+    }, () => this.reload());
   },
 
   render() {
@@ -46,6 +56,12 @@ var CommentsView = React.createClass({
     ) : (
       <div>
         <DetailView data={this.state.detail}/>
+        <ul className="sort-list toggle-list">
+          <li><a href="#" className={this.state.sort === 'hot' ? 'active' : ''} onClick={this.handleSortButton.bind(this, 'hot')}>Hot</a></li>
+          <li><a href="#" className={this.state.sort === 'top' ? 'active' : ''} onClick={this.handleSortButton.bind(this, 'top')}>Top</a></li>
+          <li><a href="#" className={this.state.sort === 'new' ? 'active' : ''} onClick={this.handleSortButton.bind(this, 'new')}>New</a></li>
+        </ul>
+
         <CommentList comments={this.state.comments} detail={this.state.detail}/>
       </div>
     );
