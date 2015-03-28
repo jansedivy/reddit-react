@@ -73,10 +73,12 @@ var App = React.createClass({
             <a href="#" className="toggle-sidebar nav-button" onClick={this.handleClick}>Toggle sidebar</a>
           </header>
 
-          <div className={classnames('content', 'scrollable', { 'slide-out': this.state.showSidebar })}>
-            { this.state.showSidebar ? <div className="overlay" onClick={() => this.setState({ showSidebar: false })}></div> : '' }
-            <div className="inside">
-              <Router.RouteHandler {...this.props}/>
+          <div className="scrollable">
+            <div className={classnames('content', { 'slide-out': this.state.showSidebar })}>
+              { this.state.showSidebar ? <div className="overlay" onClick={() => this.setState({ showSidebar: false })}></div> : '' }
+              <div className="inside">
+                <Router.RouteHandler {...this.props}/>
+              </div>
             </div>
           </div>
         </div>
