@@ -44,6 +44,19 @@ var Reddit = {
     });
   },
 
+  getComments(subreddit, id, options) {
+    options = extend(true, {
+      sort: 'hot'
+    }, options);
+
+    return Fetch.getJSON('http://www.reddit.com/r/' + subreddit + '/comments/' + id + '.json?sort=' + options.sort).then(function(data) {
+      return {
+        detail: Reddit._formatTopic(data[0].data.children[0]),
+        comments: Reddit._mapComments(data[1].data.children)
+      };
+    });
+  },
+
   _mapComments(data) {
     return data.map(function(item) {
       if (item.kind === 'more') {
@@ -67,19 +80,6 @@ var Reddit = {
         comments: record.replies ? Reddit._mapComments(record.replies.data.children) : []
       };
     }).filter(item => item);
-  },
-
-  getComments(subreddit, id, options) {
-    options = extend(true, {
-      sort: 'hot'
-    }, options);
-
-    return Fetch.getJSON('http://www.reddit.com/r/' + subreddit + '/comments/' + id + '.json?sort=' + options.sort).then(function(data) {
-      return {
-        detail: Reddit._formatTopic(data[0].data.children[0]),
-        comments: Reddit._mapComments(data[1].data.children)
-      };
-    });
   },
 
   _formatTopic(item) {
