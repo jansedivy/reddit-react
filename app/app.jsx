@@ -37,10 +37,10 @@ var App = React.createClass({
 
   handleClick(e) {
     e.preventDefault();
-    this.closeSidebar();
+    this.toggleSidebar();
   },
 
-  closeSidebar() {
+  toggleSidebar() {
     this.setState({ showSidebar: !this.state.showSidebar });
   },
 
@@ -57,7 +57,7 @@ var App = React.createClass({
   },
 
   handleSidebarClick() {
-    this.closeSidebar();
+    this.toggleSidebar();
     this.clearRoutes();
   },
 
