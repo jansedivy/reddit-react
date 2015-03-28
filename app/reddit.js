@@ -2,13 +2,15 @@ var Fetch = require('./fetch');
 var extend = require('extend');
 
 var Reddit = {
+  URL: 'http://www.reddit.com/',
+
   subreddit(subreddit, options) {
     options = extend(true, {
       lastId: '',
       sort: 'hot'
     }, options);
 
-    return Fetch.getJSON('http://www.reddit.com/r/' + subreddit + '/' + options.sort + '.json?after=' + options.lastId).then(function(data) {
+    return Fetch.getJSON(Reddit.URL + 'r/' + subreddit + '/' + options.sort + '.json?after=' + options.lastId).then(function(data) {
       return {
         lastId: data.data.after,
         items: data.data.children.map(Reddit._formatTopic)
@@ -17,7 +19,7 @@ var Reddit = {
   },
 
   search(value) {
-    return Fetch.getJSON('http://www.reddit.com/search.json?q=' + value).then(function(data) {
+    return Fetch.getJSON(Reddit.URL + 'search.json?q=' + value).then(function(data) {
       return data.data.children.map(Reddit._formatTopic);
     });
   },
@@ -27,7 +29,7 @@ var Reddit = {
       limit: 5,
     }, options);
 
-    return Fetch.getJSON('http://www.reddit.com/subreddits/search.json?q=' + value + '&limit=' + options.limit).then(function(data) {
+    return Fetch.getJSON(Reddit.URL + 'subreddits/search.json?q=' + value + '&limit=' + options.limit).then(function(data) {
       return data.data.children.map((item) => {
         return {
           name: item.data.display_name
@@ -39,7 +41,7 @@ var Reddit = {
   getMoreComments(name, item) {
     var query = `?link_id=${name}&children=${item.children.join(',')}&api_type=json`;
 
-    return Fetch.getJSON('http://www.reddit.com/api/morechildren.json' + query).then(function(data) {
+    return Fetch.getJSON(Reddit.URL + 'api/morechildren.json' + query).then(function(data) {
       return Reddit._mapComments(data.json.data.things);
     });
   },
@@ -49,7 +51,7 @@ var Reddit = {
       sort: 'hot'
     }, options);
 
-    return Fetch.getJSON('http://www.reddit.com/r/' + subreddit + '/comments/' + id + '.json?sort=' + options.sort).then(function(data) {
+    return Fetch.getJSON(Reddit.URL + 'r/' + subreddit + '/comments/' + id + '.json?sort=' + options.sort).then(function(data) {
       return {
         detail: Reddit._formatTopic(data[0].data.children[0]),
         comments: Reddit._mapComments(data[1].data.children)
