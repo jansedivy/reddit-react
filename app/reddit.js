@@ -69,8 +69,12 @@ var Reddit = {
     }).filter(item => item);
   },
 
-  getComments(subreddit, id) {
-    return Fetch.getJSON('http://www.reddit.com/r/' + subreddit + '/comments/' + id + '.json').then(function(data) {
+  getComments(subreddit, id, options) {
+    options = extend(true, {
+      sort: 'hot'
+    }, options);
+
+    return Fetch.getJSON('http://www.reddit.com/r/' + subreddit + '/comments/' + id + '.json?sort=' + options.sort).then(function(data) {
       return {
         detail: Reddit._formatTopic(data[0].data.children[0]),
         comments: Reddit._mapComments(data[1].data.children)
