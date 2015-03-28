@@ -11,5 +11,5 @@ fastclick.attach(document.body);
 React.initializeTouchEvents(true);
 
 Router.run(routes, (Handler) => {
-  React.render(<Handler/>, document.body);
+  React.render(<Handler/>, document.querySelector('.main-react-container'));
 });
