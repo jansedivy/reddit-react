@@ -20,6 +20,7 @@ var SubredditView = React.createClass({
       lastId: null,
       items: [],
       isLoading: true,
+      isLoadingMore: false,
       sort: 'hot'
     };
   },
@@ -27,13 +28,13 @@ var SubredditView = React.createClass({
   loadMore(e) {
     e.preventDefault();
 
-    this.setState({ isLoading: true });
+    this.setState({ isLoadingMore: true });
 
     Reddit.subreddit(this.state.name, { lastId: this.state.lastId, sort: this.state.sort }).then(data => {
       this.setState({
         items: this.state.items.concat(data.items),
         lastId: data.lastId,
-        isLoading: false
+        isLoadingMore: false
       });
     });
   },
@@ -67,7 +68,8 @@ var SubredditView = React.createClass({
     ) : (
       <div>
         <ListView items={this.state.items}/>
-        <a href="#" onClick={this.loadMore}>Load more</a>
+
+        {this.state.isLoadingMore ? <Spinner/> : <a href="#" onClick={this.loadMore}>Load more</a>}
       </div>
     );
 
