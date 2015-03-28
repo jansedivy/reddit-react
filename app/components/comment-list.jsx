@@ -80,10 +80,20 @@ var CommentItem = React.createClass({
       );
     }
 
+    var gold;
+    if (this.props.data.gold > 0) {
+      gold = (
+        <span className="gold">
+          {this.props.data.gold > 1 ? (<span className="gold-count">{this.props.data.gold}x</span>) : ''}
+          <div className="gold-icon"></div>
+        </span>
+      );
+    }
+
     return (
       <div className="comment">
         <div className="comment-text">
-          <h4>{this.props.data.score} - {this.props.data.author} <span className="comment-date"><DateFormat date={this.props.data.created}/></span></h4>
+          <h4>{gold}{this.props.data.score} - {this.props.data.author} <span className="comment-date"><DateFormat date={this.props.data.created}/></span></h4>
           <Markdown data={this.props.data.text}/>
           {this.props.data.comments.length ?
             <a href="#"
