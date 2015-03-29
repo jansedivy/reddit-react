@@ -89,6 +89,7 @@ var Reddit = {
     var record = item.data;
     return {
       id: record.id,
+      pinned: record.stickied,
       name: record.name,
       image: record.thumbnail,
       domain: record.domain,
