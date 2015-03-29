@@ -7,9 +7,9 @@ var Spinner = React.createClass({
       top: '50%',
       left: '50%',
       lines: 10,
-      length: 7,
-      width: 3,
-      radius: 7
+      length: 5,
+      width: 2,
+      radius: 5
     });
 
     spinner.spin(React.findDOMNode(this.refs.spinner));
