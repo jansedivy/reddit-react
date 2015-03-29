@@ -57,14 +57,20 @@ a:active {
   background: white;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
   z-index: 1;
-  padding: 0 13px;
+  padding: 0 20px;
   text-align: center;
 
   transition: all .3s ease-out;
   transform: translate3d(0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .nav-edge {
+    flex-shrink: 0;
+  }
 
   .nav-button {
-    margin-top: 13px;
     width: 50px;
     height: 50px;
     text-indent: -999em;
@@ -90,19 +96,12 @@ a:active {
   }
 
   .header-title {
-    display: inline-block;
-    font-size: 25px;
-    line-height: 71px;
-    font-weight: 300;
-    width: 100%;
-    padding: 0 80px;
-    margin: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    text-overflow: ellipsis;
-    height: 100%;
     overflow: hidden;
+    padding: 0 10px;
+    font-size: 25px;
+    font-weight: 300;
+    margin: 0;
+    text-overflow: ellipsis;
     white-space: nowrap;
   }
 }
