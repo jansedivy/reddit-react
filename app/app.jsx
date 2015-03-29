@@ -13,7 +13,10 @@ var App = React.createClass({
   },
 
   getChildContext() {
-    return { pushRoute: this.pushRoute };
+    return {
+      pushRoute: this.pushRoute,
+      clearRoutes: this.clearRoutes
+    };
   },
 
   pushRoute() {
