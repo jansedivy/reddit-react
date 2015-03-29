@@ -10,8 +10,6 @@ fastclick.attach(document.body);
 
 React.initializeTouchEvents(true);
 
-require('./prevent-bounce')();
-
 Router.run(routes, (Handler) => {
   React.render(<Handler/>, document.querySelector('.main-react-container'));
 });
