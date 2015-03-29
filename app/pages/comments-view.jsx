@@ -24,7 +24,7 @@ var CommentsView = React.createClass({
       detail: {},
       loading: false,
       loadingComments: false,
-      sort: 'hot'
+      sort: 'top'
     };
   },
 
