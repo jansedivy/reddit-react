@@ -32,22 +32,26 @@ var RecordItem = React.createClass({
   render() {
     return (
       <div className={classnames('record-item', { 'pinned': this.props.data.pinned })}>
-        <span className="score">{this.props.data.score}</span>
+        <span className="score">
+          <span>
+            {this.props.data.score}
+          </span>
+        </span>
         <div className="info">
-          {this.getTitleLink()} <span className="domain">({this.props.data.domain})</span>
-          <ul className="meta">
-            <li>
+          {this.getTitleLink()}
+          <div className="meta">
+            <div>
               <Link
                 onClick={this.context.pushRoute}
                 to="comments"
                 params={{ name: this.props.data.subreddit, id: this.props.data.id }}>
                 {this.props.data.commentCounts} Comments
               </Link>
-            </li>
-            <li>
+            </div>
+            <div>
               <DateFormat date={this.props.data.created}/>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </div>
     );
