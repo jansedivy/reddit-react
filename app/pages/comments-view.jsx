@@ -11,7 +11,8 @@ var CommentsView = React.createClass({
   mixins: [PureRenderMixin],
 
   contextTypes: {
-    router: React.PropTypes.func.isRequired
+    router: React.PropTypes.func.isRequired,
+    setNavigatorTitle: React.PropTypes.func
   },
 
   getInitialState() {
@@ -35,6 +36,7 @@ var CommentsView = React.createClass({
   reload() {
     this.setState({ loadingComments: true }, () => {
       Reddit.getComments(this.state.subreddit, this.state.id, { sort: this.state.sort }).then(data => {
+        this.context.setNavigatorTitle(data.detail.title);
         this.setState({
           detail: data.detail,
           comments: data.comments,

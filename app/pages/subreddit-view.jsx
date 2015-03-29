@@ -11,7 +11,8 @@ var SubredditView = React.createClass({
   mixins: [PureRenderMixin],
 
   contextTypes: {
-    router: React.PropTypes.func.isRequired
+    router: React.PropTypes.func.isRequired,
+    setNavigatorTitle: React.PropTypes.func
   },
 
   getInitialState() {
@@ -59,6 +60,7 @@ var SubredditView = React.createClass({
   },
 
   componentDidMount() {
+    this.context.setNavigatorTitle(this.state.name);
     this.reload();
   },
 

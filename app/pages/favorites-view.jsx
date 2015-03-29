@@ -9,11 +9,19 @@ var PureRenderMixin = React.addons.PureRenderMixin;
 var FavoritesView = React.createClass({
   mixins: [PureRenderMixin],
 
+  contextTypes: {
+    setNavigatorTitle: React.PropTypes.func
+  },
+
   getInitialState() {
     return {
       subreddits: Favorites.all(),
       showAddForm: false
     };
+  },
+
+  componentDidMount() {
+    this.context.setNavigatorTitle('Reddit');
   },
 
   handleSubmit(e) {
