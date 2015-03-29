@@ -78,13 +78,13 @@ var App = React.createClass({
       <div className="main-container">
         <div className="app">
           <header className={classnames('main-header', { 'slide-out': this.state.showSidebar })}>
-            <div class="nav-edge">
+            <div className="nav-edge">
               { this.state.routesHistory.length > 0 ? <a href="#" className="back-button nav-button" onClick={this.goBack}>Toggle sidebar</a> : null }
             </div>
 
             <h1 className="header-title">{this.state.title}</h1>
 
-            <div class="nav-edge">
+            <div className="nav-edge">
               <a href="#" className="toggle-sidebar nav-button" onClick={this.handleClick}>Toggle sidebar</a>
             </div>
           </header>
