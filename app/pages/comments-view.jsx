@@ -30,13 +30,13 @@ var CommentsView = React.createClass({
   },
 
   componentDidMount() {
+    this.context.setNavigatorTitle('Comments');
     this.reload();
   },
 
   reload() {
     this.setState({ loadingComments: true }, () => {
       Reddit.getComments(this.state.subreddit, this.state.id, { sort: this.state.sort }).then(data => {
-        this.context.setNavigatorTitle(data.detail.title);
         this.setState({
           detail: data.detail,
           comments: data.comments,
