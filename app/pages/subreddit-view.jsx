@@ -83,7 +83,6 @@ var SubredditView = React.createClass({
           <li><a href="#" className={this.state.sort === 'new' ? 'active' : ''} onClick={this.handleSortButton.bind(this, 'new')}>New</a></li>
         </ul>
 
-        <h2>{this.state.name}</h2>
         {main}
       </div>
     );
