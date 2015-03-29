@@ -92,8 +92,18 @@ a:active {
   .header-title {
     display: inline-block;
     font-size: 25px;
-    line-height: 41px;
+    line-height: 71px;
     font-weight: 300;
+    width: 100%;
+    padding: 0 80px;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-overflow: ellipsis;
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
   }
 }
 
