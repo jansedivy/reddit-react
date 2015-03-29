@@ -251,8 +251,16 @@ a:active {
     bottom: 0;
     width: 20px;
 
+    &:active {
+      background: darken(rgba(106, 148, 178, 0.34), 10%);
+    }
+
     &.hidden-comments {
       background: #8a99ff;
+
+      &:active {
+        background: darken(#8a99ff, 10%);
+      }
     }
   }
 
