@@ -9,14 +9,22 @@ var App = React.createClass({
 
   childContextTypes: {
     pushRoute: React.PropTypes.func,
-    clearRoutes: React.PropTypes.func
+    clearRoutes: React.PropTypes.func,
+    setNavigatorTitle: React.PropTypes.func
   },
 
   getChildContext() {
     return {
       pushRoute: this.pushRoute,
-      clearRoutes: this.clearRoutes
+      clearRoutes: this.clearRoutes,
+      setNavigatorTitle: this.setNavigatorTitle
     };
+  },
+
+  setNavigatorTitle(value) {
+    this.setState({
+      title: value
+    });
   },
 
   pushRoute() {
