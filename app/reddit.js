@@ -32,7 +32,7 @@ var Reddit = {
     return Fetch.getJSON(Reddit.URL + 'subreddits/search.json?q=' + value + '&limit=' + options.limit).then(function(data) {
       return data.data.children.map((item) => {
         return {
-          name: item.data.display_name
+          name: 'Todo: Reddit is blocking api requests'
         };
       });
     });
