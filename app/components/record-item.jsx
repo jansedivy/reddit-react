@@ -1,6 +1,7 @@
 var React = require('react');
 var Link = require('react-router').Link;
 var DateFormat = require('./date-format');
+var classnames = require('classnames');
 
 var PureRenderMixin = React.addons.PureRenderMixin;
 
@@ -30,7 +31,7 @@ var RecordItem = React.createClass({
 
   render() {
     return (
-      <div className="record-item">
+      <div className={classnames('record-item', { 'pinned': this.props.data.pinned })}>
         <span className="score">{this.props.data.score}</span>
         <div className="info">
           {this.getTitleLink()} <span className="domain">({this.props.data.domain})</span>

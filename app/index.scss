@@ -169,6 +169,10 @@ a:active {
   padding: 10px 0;
   border-bottom: 1px solid #d3d3d3;
 
+  &.pinned {
+    background: #f4f8ff;
+  }
+
   .record-title-link {
     display: block;
     padding: 10px 0;
