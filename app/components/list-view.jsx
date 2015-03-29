@@ -11,7 +11,7 @@ var ListView = React.createClass({
       return <RecordItem data={item} key={item.id}/>;
     });
 
-    return <div>{items}</div>;
+    return <div className="record-list">{items}</div>;
   }
 });
 
