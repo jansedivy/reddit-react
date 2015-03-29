@@ -69,7 +69,7 @@ var SubredditView = React.createClass({
       <div>
         <ListView items={this.state.items}/>
 
-        {this.state.isLoadingMore ? <Spinner/> : <a href="#" onClick={this.loadMore}>Load more</a>}
+        {this.state.isLoadingMore ? <Spinner/> : <a href="#" className="button load-more-button" onClick={this.loadMore}>Load more</a>}
       </div>
     );
 
