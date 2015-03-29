@@ -23,6 +23,7 @@ var CommentsView = React.createClass({
       comments: [],
       detail: {},
       loading: false,
+      loadingComments: false,
       sort: 'hot'
     };
   },
@@ -32,12 +33,12 @@ var CommentsView = React.createClass({
   },
 
   reload() {
-    this.setState({ loading: true }, () => {
+    this.setState({ loadingComments: true }, () => {
       Reddit.getComments(this.state.subreddit, this.state.id, { sort: this.state.sort }).then(data => {
         this.setState({
           detail: data.detail,
           comments: data.comments,
-          loading: false
+          loadingComments: false
         });
       });
     });
@@ -62,7 +63,7 @@ var CommentsView = React.createClass({
           <li><a href="#" className={this.state.sort === 'new' ? 'active' : ''} onClick={this.handleSortButton.bind(this, 'new')}>New</a></li>
         </ul>
 
-        <CommentList comments={this.state.comments} detail={this.state.detail}/>
+        {this.state.loadingComments ? <Spinner/> : <CommentList comments={this.state.comments} detail={this.state.detail}/>}
       </div>
     );
   }
