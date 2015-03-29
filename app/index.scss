@@ -341,19 +341,22 @@ a:active {
   }
 }
 
-.add-new-favorite-button {
-  margin: 20px 0;
-  padding: 20px;
+.button {
   width: 100%;
   background: #fc611f;
   color: white;
   display: inline-block;
   text-align: center;
+  padding: 20px;
 
   &:active {
     color: white;
     background: darken(#fc611f, 10%);
   }
+}
+
+.add-new-favorite-button {
+  margin: 20px 0;
 }
 
 .new-favorite-input {
