@@ -37,7 +37,12 @@ var RecordItem = React.createClass({
           {this.getTitleLink()} <span className="domain">({this.props.data.domain})</span>
           <ul className="meta">
             <li>
-              <Link onClick={this.context.pushRoute} to="comments" params={{ name: this.props.data.subreddit, id: this.props.data.id }}>{this.props.data.commentCounts} Comments</Link>
+              <Link
+                onClick={this.context.pushRoute}
+                to="comments"
+                params={{ name: this.props.data.subreddit, id: this.props.data.id }}>
+                {this.props.data.commentCounts} Comments
+              </Link>
             </li>
             <li>
               <DateFormat date={this.props.data.created}/>
