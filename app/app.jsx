@@ -31,7 +31,8 @@ var App = React.createClass({
   getInitialState() {
     return {
       showSidebar: false,
-      routesHistory: []
+      routesHistory: [],
+      title: 'Reddit'
     };
   },
 
@@ -69,7 +70,7 @@ var App = React.createClass({
 
             { this.state.routesHistory.length > 0 ? <a href="#" className="back-button nav-button" onClick={this.goBack}>Toggle sidebar</a> : null }
 
-            <h1 className="header-title">Reddit app</h1>
+            <h1 className="header-title">{this.state.title}</h1>
             <a href="#" className="toggle-sidebar nav-button" onClick={this.handleClick}>Toggle sidebar</a>
           </header>
 
