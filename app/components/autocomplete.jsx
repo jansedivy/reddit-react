@@ -56,7 +56,7 @@ var AutoComplete = React.createClass({
   render() {
     return (
       <div className="autocomplete-field">
-        <input {...this.props} type="text" onChange={this.onChange} ref="input" value={this.state.value}/>
+        <input autocapitalize="off" autocorrect="off" autoComplete="off" spellCheck="false" {...this.props} type="text" onChange={this.onChange} ref="input" value={this.state.value}/>
         {this.state.loading ? (
           <Spinner/>
         ) : (
