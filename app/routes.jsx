@@ -1,9 +1,8 @@
 var React = require('react');
-var Router = require('react-router');
+import { Router, Route, DefaultRoute, IndexRoute } from 'react-router';
+import { render } from 'react-dom';
 
-var Route = Router.Route;
-var DefaultRoute = Router.DefaultRoute;
-var NotFoundRoute = Router.NotFoundRoute;
+import createHashHistory from 'history/lib/createHashHistory';
 
 var App = require('./app');
 var SubredditView = require('./pages/subreddit-view');
@@ -12,17 +11,21 @@ var CommentsView = require('./pages/comments-view');
 var SearchView = require('./pages/search-view');
 var NotFound = require('./pages/not-found');
 
-var routes = (
-  <Route>
-    <Route name="app" path="/" handler={App}>
-      <DefaultRoute handler={FavoritesView}/>
-      <Route name="search" path="search" handler={SearchView}/>
-      <Route name="subreddit" path="r/:name" handler={SubredditView}/>
-      <Route name="comments" path="r/:name/comments/:id" handler={CommentsView}/>
-    </Route>
+var init = function() {
+  render((
+    <Router history={createHashHistory()}>
+      <Route name="app" path="/" component={App}>
+        <IndexRoute name="favorites" component={FavoritesView}/>
+        <Route name="search" path="search" component={SearchView}/>
+        <Route name="subreddit" path="r/:name" component={SubredditView}/>
+        <Route name="comments" path="r/:name/comments/:id" component={CommentsView}/>
+        <Route path="*" component={NotFound}/>
+      </Route>
+    </Router>
+  ), document.querySelector('.main-react-container'));
+};
 
-    <NotFoundRoute handler={NotFound}/>
-  </Route>
-);
+module.exports = {
+  init: init
+};
 
-module.exports = routes;

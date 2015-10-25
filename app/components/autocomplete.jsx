@@ -23,8 +23,8 @@ var AutoComplete = React.createClass({
     });
   },
 
-  onChange() {
-    var value = this.refs.input.getDOMNode().value;
+  onChange(event) {
+    var value = event.target.value;
 
     this.setState({
       items: [],
@@ -61,7 +61,7 @@ var AutoComplete = React.createClass({
           <Spinner/>
         ) : (
           <ul className="autocomplete-list list">
-            {this.state.items.map(item => <li key={item.name}><a href="#" onClick={this.handleClick.bind(this, item)}>{item.name}</a></li>)}
+            {this.state.items.map(item => <li key={item.id}><a href="#" onClick={this.handleClick.bind(this, item)}>{item.name}</a></li>)}
           </ul>
         )}
       </div>

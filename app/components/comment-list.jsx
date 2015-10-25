@@ -6,7 +6,7 @@ var DateFormat = require('./date-format');
 
 var Reddit = require('../reddit');
 
-var PureRenderMixin = React.addons.PureRenderMixin;
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 
 var CommentList = React.createClass({
   mixins: [PureRenderMixin],

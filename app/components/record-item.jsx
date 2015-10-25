@@ -3,7 +3,7 @@ var Link = require('react-router').Link;
 var DateFormat = require('./date-format');
 var classnames = require('classnames');
 
-var PureRenderMixin = React.addons.PureRenderMixin;
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 
 var RecordItem = React.createClass({
   mixins: [PureRenderMixin],
@@ -16,9 +16,9 @@ var RecordItem = React.createClass({
     var title = this.props.data.title;
 
     if (this.props.data.external) {
-      return <a className="record-title-link" href={this.props.data.url}>{this.getThumbnail()} {title}</a>;
+      return <a className="record-title-link" target="_blank" href={this.props.data.url}>{this.getThumbnail()} {title}</a>;
     } else {
-      return <Link onClick={this.context.pushRoute} className="record-title-link" to="comments" params={{ name: this.props.data.subreddit, id: this.props.data.id }}>{this.getThumbnail()} {title}</Link>;
+      return <Link onClick={this.context.pushRoute} className="record-title-link" to={`/r/${this.props.data.subreddit}/comments/${this.props.data.id}`}>{this.getThumbnail()} {title}</Link>;
     }
   },
 
@@ -43,8 +43,7 @@ var RecordItem = React.createClass({
             <div>
               <Link
                 onClick={this.context.pushRoute}
-                to="comments"
-                params={{ name: this.props.data.subreddit, id: this.props.data.id }}>
+                to={`/r/${this.props.data.subreddit}/comments/${this.props.data.id}`}>
                 {this.props.data.commentCounts} Comments
               </Link>
             </div>

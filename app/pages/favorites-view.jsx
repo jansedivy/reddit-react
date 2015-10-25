@@ -1,10 +1,11 @@
 var React = require('react');
-var Link = require('react-router').Link;
 var Favorites = require('../favorites');
 var FavoriteItem = require('../components/favorite-item');
 var AutoComplete = require('../components/autocomplete');
 
-var PureRenderMixin = React.addons.PureRenderMixin;
+var PureRenderMixin = require('react-addons-pure-render-mixin');
+
+import { Link } from 'react-router';
 
 var FavoritesView = React.createClass({
   mixins: [PureRenderMixin],

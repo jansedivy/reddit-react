@@ -5,19 +5,18 @@ var Reddit = require('../reddit');
 var ListView = require('../components/list-view');
 var Spinner = require('../components/spinner');
 
-var PureRenderMixin = React.addons.PureRenderMixin;
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 
 var SubredditView = React.createClass({
   mixins: [PureRenderMixin],
 
   contextTypes: {
-    router: React.PropTypes.func.isRequired,
     setNavigatorTitle: React.PropTypes.func
   },
 
   getInitialState() {
     return {
-      name: this.context.router.getCurrentParams().name,
+      name: this.props.params.name,
       lastId: null,
       items: [],
       isLoading: true,

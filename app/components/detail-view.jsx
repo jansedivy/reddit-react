@@ -2,7 +2,7 @@ var React = require('react');
 var Markdown = require('./markdown');
 var DateFormat = require('./date-format');
 
-var PureRenderMixin = React.addons.PureRenderMixin;
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 
 var DetailView = React.createClass({
   mixins: [PureRenderMixin],

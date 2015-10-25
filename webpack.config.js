@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var release = (process.env.NODE_ENV === 'production');
 
 var plugins = [
-  new webpack.NormalModuleReplacementPlugin(/^react$/, 'react/addons'),
+  // new webpack.NormalModuleReplacementPlugin(/^react$/),
   //new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
 ];
 

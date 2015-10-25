@@ -2,8 +2,9 @@ var React = require('react');
 var { Link } = require('react-router');
 var classnames = require('classnames');
 var vendorPrefix = require('vendor-prefix');
+import { findDOMNode } from 'react-dom';
 
-var PureRenderMixin = React.addons.PureRenderMixin;
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 
 var FavoriteItem = React.createClass({
   mixins: [PureRenderMixin],
@@ -50,7 +51,7 @@ var FavoriteItem = React.createClass({
   },
 
   handleTouchEnd() {
-    var width = React.findDOMNode(this).offsetWidth;
+    var width = findDOMNode(this).offsetWidth;
 
     if (this.state.translation/width > 0.5) {
       this.setState({
@@ -189,7 +190,7 @@ var FavoriteItem = React.createClass({
     return (
       <li className="favorite-item">
         <div style={style} className={classnames('list-item-inside', { 'animate': this.state.animate })} onTouchEnd={this.handleTouchEnd} onTouchMove={this.handleTouchMove} onTouchStart={this.handleTouchStart}>
-          <Link onClick={this.context.pushRoute} to="subreddit" params={this.props.item}>{this.props.item.name}</Link>
+          <Link onClick={this.context.pushRoute} to={`/r/${this.props.item.name}`} params={this.props.item}>{this.props.item.name}</Link>
         </div>
         <div onTouchEnd={this.handleBehindTouchEnd} onTouchMove={this.handleBehindTouchMove} onTouchStart={this.handleBehindTouchStart} className="list-item-behind">
           <a href="#" onClick={this.remove}>Remove</a>

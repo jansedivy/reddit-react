@@ -13,7 +13,7 @@ var SearchView = React.createClass({
   handleSubmit(e) {
     e.preventDefault();
 
-    var element = React.findDOMNode(this.refs.search);
+    var element = this.refs.search;
     var input = element.value.trim();
 
     Reddit.search(input).then((data) => this.setState({ searchItems: data }));

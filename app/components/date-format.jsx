@@ -1,7 +1,7 @@
 var React = require('react');
 var moment = require('moment');
 
-var PureRenderMixin = React.addons.PureRenderMixin;
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 
 var DateFormat = React.createClass({
   mixins: [PureRenderMixin],

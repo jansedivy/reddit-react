@@ -5,18 +5,17 @@ var DetailView = require('../components/detail-view');
 var CommentList = require('../components/comment-list');
 var Spinner = require('../components/spinner');
 
-var PureRenderMixin = React.addons.PureRenderMixin;
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 
 var CommentsView = React.createClass({
   mixins: [PureRenderMixin],
 
   contextTypes: {
-    router: React.PropTypes.func.isRequired,
     setNavigatorTitle: React.PropTypes.func
   },
 
   getInitialState() {
-    var params = this.context.router.getCurrentParams();
+    var params = this.props.params;
 
     return {
       subreddit: params.name,

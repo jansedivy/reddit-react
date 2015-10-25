@@ -1,7 +1,7 @@
 var React = require('react');
 var RecordItem = require('./record-item');
 
-var PureRenderMixin = React.addons.PureRenderMixin;
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 
 var ListView = React.createClass({
   mixins: [PureRenderMixin],

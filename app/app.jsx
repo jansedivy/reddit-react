@@ -1,10 +1,10 @@
 var React = require('react');
-var Router = require('react-router');
+import { Router, Link } from 'react-router';
 var classnames = require('classnames');
 
 var App = React.createClass({
   contextTypes: {
-    router: React.PropTypes.func
+    location: React.PropTypes.object
   },
 
   childContextTypes: {
@@ -29,7 +29,7 @@ var App = React.createClass({
 
   pushRoute() {
     this.setState({
-      routesHistory: this.state.routesHistory.concat([{ name: this.context.router.getCurrentPath() }])
+      routesHistory: this.state.routesHistory.concat([{ name: this.context.location.pathname }])
     });
   },
 
@@ -60,7 +60,8 @@ var App = React.createClass({
     e.preventDefault();
 
     if (this.state.routesHistory.length > 0) {
-      this.context.router.transitionTo(this.state.routesHistory.pop().name);
+      var url = this.state.routesHistory.pop().name;
+      this.props.history.pushState(null, url);
 
       this.setState({
         routesHistory: this.state.routesHistory
@@ -93,7 +94,7 @@ var App = React.createClass({
             <div className={classnames('content', { 'slide-out': this.state.showSidebar })}>
               { this.state.showSidebar ? <div className="overlay" onClick={() => this.setState({ showSidebar: false })}></div> : '' }
               <div className="inside">
-                <Router.RouteHandler {...this.props}/>
+                {this.props.children}
               </div>
             </div>
           </div>
@@ -104,8 +105,8 @@ var App = React.createClass({
             <h1>Sidebar</h1>
 
             <ul className="list">
-              <li><Router.Link to="/" onClick={this.handleSidebarClick}>Favorites</Router.Link></li>
-              <li><Router.Link to="/search" onClick={this.handleSidebarClick}>Search</Router.Link></li>
+              <li><Link to="/" onClick={this.handleSidebarClick}>Favorites</Link></li>
+              <li><Link to="/search" onClick={this.handleSidebarClick}>Search</Link></li>
             </ul>
           </div>
         </div>

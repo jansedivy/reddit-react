@@ -12,7 +12,7 @@ var Spinner = React.createClass({
       radius: 5
     });
 
-    spinner.spin(React.findDOMNode(this.refs.spinner));
+    spinner.spin(this.refs.spinner);
   },
 
   render() {
